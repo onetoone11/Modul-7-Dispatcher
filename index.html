@@ -10,19 +10,115 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-img"></div>
 
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-lg-4">feadcf</div>
-        <div class="col-lg-4">sfcaa</div>
-        <div class="col-lg-4">scaca</div>
-    </div>
-</div> -->
-    
+    <!-- Section,  -->
+    <section id="commands">
 
-<!-- <script src="main.js">
-     -->
+        <div class="center">
+            <textarea placeholder="Commands..." name="" required id="" cols="30" rows="10"></textarea>
+            <br><br>
+            <label for="workLoad">Workload</label><br>
+            <input placeholder="Workload" name="workLoad" id="workLoad" type="text" value="100">
+
+            <br><br><br>
+
+            <button onclick="bottomFunction()" title="Submit">Submit</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Section -->
+    <section style="padding-top: 150px;">
+
+        <!-- <hr> -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="center">
+                        <div class="status capitalize pb-4" style="color: #FC4C01;">Busy</div>
+                        <img src="media/cpu.png" class="cpu_img" alt="">
+                        <div class="processer_name c-white pt-2 pb-4">CPU 1</div>
+                    </div>
+                    
+
+                    <!-- Work -->
+                    <div class="work-list">
+                        <hr>
+                        <p class="p-worklist">Delete data</p>
+                        <hr class="c-orange">
+                        <p class="p-worklist">Copy RAM</p>
+                        <hr class="c-orange">
+                        <p class="p-worklist">Print Text</p>
+                        <hr class="c-orange">
+                        <p class="p-worklist">Input Handle</p>
+                        <hr class="c-orange">
+                        <p class="p-worklist"></p>
+                        <hr>
+
+                        <ul>
+                            <li class="work_name">Delete data</li>
+                            <li class="work_time">200</li>
+                            <li class="work_prio">1</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="center">
+                        <div class="status capitalize pb-4" style="color: #8ACF8C;">Available</div>
+                        <img src="media/cpuGreen.png" class="cpu_img" alt="">
+                        <div class="processor_name c-white pt-2">CPU 2</div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="center">
+                        <div class="status capitalize pb-4" style="color: #FC4C01;">Busy</div>
+                        <img src="media/cpu.png" class="cpu_img" alt="">
+                        <div class="processor_name c-white pt-2">CPU 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- Go to top btn -->
+    <button class="top" onclick="topFunction()"><i class="fad fa-chevron-up"></i></button>
+
+    <script>
+        // Scroll up btn function
+        let topBtn = document.querySelector(".top");
+        
+        window.onscroll = function() {scrollFunction()};
+        
+        function scrollFunction() {
+          if (document.body.scrollTop > 650 || document.documentElement.scrollTop > 650) {
+            topBtn.style.display = "block";
+          } else {
+            topBtn.style.display = "none";
+          }
+        }
+
+        function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
+
+        function bottomFunction(){
+            document.body.scrollTop = 650;
+            document.documentElement.scrollTop = 650;
+            // topBtn.style.display = 'block';
+        }
+
+    </script>
+
+
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     </body>
-</script>
+
 </html>

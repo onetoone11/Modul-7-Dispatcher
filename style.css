@@ -1,5 +1,148 @@
 body{
+    background-color: #313131;
+    height: 300vh;
+    overflow-x: hidden;
+}
+
+.background-img{
     background-image: url('media/processor.png');
     background-repeat: no-repeat;
-    background-color: rebeccapurple;
+    background-size: 100% 100%;
+    width: 100vw;
+    height: 300vh;
+    opacity: 0.1;
+    position: absolute;
+    z-index: -1;
+}
+
+section{
+    padding-top: 90px;
+    padding-left: 90px;
+    padding-right: 90px;
+}
+
+textarea{
+    background-color: #2C2C2C;
+    opacity: 0.8;
+    width: 400px;
+    color: #fff;
+    padding-left: 12px;
+    padding-top: 12px;
+}
+
+input{
+    background-color: #2C2C2C;
+    opacity: 0.8;
+    width: 400px;
+    color: #fff;
+    padding-left: 12px;
+    border: none;
+    height: 45px;
+}
+
+label{
+    color: #fff;
+    opacity: 0.6;
+}
+
+button{
+    background: radial-gradient(circle, #F78D0B, #FC4C01 40px);
+    border: none;
+    color: #fff;
+    height: 50px;
+    width: 100px;
+    border-radius: 50px;
+}
+
+button:hover{
+    transform: scale(1.1);
+    transition: ease-in 0.2s;
+}
+
+.top{
+    display: none;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: red;
+    transition: ease-in 0.2s;
+}
+
+/* Cpu */
+
+.cpu_img{
+    width: 50%;
+}
+
+/* Work list */
+
+.work-list{
+    background-color: #2C2C2C;
+    opacity: 0.8;
+    width: 300px;
+    color: #fff;
+    margin: auto;
+    /* padding-left: 12px; */
+    /* padding-top: 12px; */
+}
+
+.p-worklist{
+    height: 25px;
+    padding-left: 12px;
+    /* margin: 0 !important;
+    padding: 0 0 0 12px; */
+}
+
+hr{
+    width: 280px;
+    /* height: 12px; */
+    margin-left: 12px;
+    border: none;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    display: inline;
+}
+
+.work_name{
+    /* position: absolute; */
+    float: left;
+    padding-left: 12px;
+}
+
+.work_time{
+    position: absolute;
+    left: 300px;
+}
+
+.work_prio{
+    float: right;
+    padding-right: 12px;
+}
+
+/* Egen css */
+
+.center{
+    text-align: center;
+}
+
+.capitalize{
+    text-transform: capitalize;
+}
+
+.c-white{
+    color: #fff;
+}
+
+.c-orange{
+    color: #F78D0B;
 }
