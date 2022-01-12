@@ -7,13 +7,6 @@ class Process {
     }
 }
 
-class Node1 {
-    constructor(data, next=null) {
-        this.data = data;
-        this.next = next;
-    }
-}
-
 class Node2 {
     constructor(data, next=null) {
         this.data = data;
@@ -32,42 +25,35 @@ class Node3 {
 
 class CPU1 {
     constructor() {
-        this.head = null;
+        this.array = [];
     }
 
-    length() {
-        let t = this.head;
-        let count = 0;
-        while(t) {
-            count++;
-            t = t.next;
-        }
-        return count;
-    }
 
-    add(data) {
-        // for(let i = 0; i < data.length; i++) {
-        //     let t = new Node(data[i]);
-        //     t.next = this.head;
-        //     this.head = t;
-        // }
-        const add2 = list => data => {
-            if(list === null) {
-                return new Process()
-            }
-        }
+
+    add(data) { //enqueue
+        this.array.push(data);
     }
 
     remove() { //dequeue(remove head, return head data)
-        let t = this.head.data;
-        if(this.head !== null) {
-            this.head = this.head.next;
-        }
-        return t;
+        this.array.shift();
     }
 
     work(ms) {
+        var timer = setInterval(function work2() {
+            if(ms > 0) {
+                let temp = this.array[0];
+                if(temp.remainingTime <= 0) {
+                    this.remove();
+                    console.log("finished with a task");
+                } else {
 
+                }
+            } else {
+                clearInterval(timer);
+                return;
+            }
+            ms--;
+        }, 100);
     }
 }
 
@@ -96,11 +82,10 @@ class CPU2 {
 
     work(ms) {
         ms = ms/this.length();
-        while(ms > 0) {
-            for(let i = 0; i < this.length(); i++) {
-                
-            }
-            ms--;
+        var timer = setInterval(work2,1);
+
+        function work2() {
+
         }
     }
 }
