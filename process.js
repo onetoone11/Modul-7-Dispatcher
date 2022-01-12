@@ -28,8 +28,6 @@ class CPU1 {
         this.array = [];
     }
 
-
-
     add(data) { //enqueue
         this.array.push(data);
     }
@@ -39,23 +37,39 @@ class CPU1 {
     }
 
     work(ms) {
+        let temp = this.array;
         var timer = setInterval(function work2() {
-            if(ms > 0) {
-                let temp = this.array[0];
-                if(temp.remainingTime <= 0) {
-                    this.remove();
-                    console.log("finished with a task");
+            if(temp.length !== 0) {
+                if(ms > 0) {
+                    if(temp[0].remainingTime <= 0) {
+                        console.log(`finished with ${temp[0].name}`);
+                        temp.shift();
+                    } else {
+                        temp[0].remainingTime -= 1;
+                    }
                 } else {
-
+                    clearInterval(timer);
+                    console.log('Time alotted has run out');
+                    return;
                 }
             } else {
                 clearInterval(timer);
+                console.log('No tasks left!');
                 return;
             }
             ms--;
-        }, 100);
+            console.log(ms);
+        }, 10);
+        this.array = temp;
     }
 }
+
+let CPU = new CPU1();
+let a = new Process("hello", 100, 5);
+let b = new Process("hell4", 45, 3);
+CPU.add(a);
+CPU.add(b);
+CPU.work(300);
 
 class CPU2 {
     constructor() {
