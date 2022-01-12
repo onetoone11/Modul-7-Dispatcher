@@ -35,13 +35,6 @@ const deleteTail = list => next(list) === false ? false : LIST(value(list))(dele
 
 // const insert = list => pos => value => concat(concat(removeFront(list)(pos))(LIST(value)(false)))(removeEnd(list)(pos));
 
-
-const insert = list => pos => value => {
-    if(pos === 0 || list === false) {
-        return false;
-    }
-}
-
 const showAll = list => console.log('Linked List: [' + toArray(list).join(', ') + ']');
 
 class Node {
@@ -54,6 +47,7 @@ class Node {
 class LinkedList {
     constructor() {
         this.head = null;
+        this.tail = null;
     }
 
     insert(...data) {
@@ -104,6 +98,22 @@ class LinkedList {
 
     sort() {
         // const mergeSort = 
+    }
+}
+
+class CircularLinkedList {
+    constructor() {
+        this.head = null;
+    }
+
+    insert(data) {
+        let t = new Node(data);
+        if(this.head === null) {
+            t.next = t;
+            this.head = t;
+        } else {
+            
+        }
     }
 }
 
