@@ -99,11 +99,13 @@ button:hover{
 hr{
     width: 280px;
     /* height: 12px; */
+    padding-top: 2px;
+    /* margin-top: 20px; */
     margin-left: 12px;
     border: none;
 }
 
-ul{
+/* ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -111,22 +113,22 @@ ul{
 
 li{
     display: inline;
-}
+} */
 
 .work_name{
     /* position: absolute; */
-    float: left;
-    padding-left: 12px;
+    /* float: left;
+    padding-left: 12px; */
 }
 
 .work_time{
-    position: absolute;
-    left: 300px;
+    /* position: absolute;
+    left: 300px; */
 }
 
 .work_prio{
-    float: right;
-    padding-right: 12px;
+    /* float: right;
+    padding-right: 12px; */
 }
 
 /* Egen css */
