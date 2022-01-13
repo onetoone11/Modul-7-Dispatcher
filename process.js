@@ -132,7 +132,21 @@ class Dispatcher {
     }
 
     start() {
-        
+        if(this.CPUs !==)
+        this.CPUs = [new CPU1(), new CPU2, new CPU3];
+        for(let i = 0; i < 3; i++) {
+            for(let j = 0; j < this.tasks.length; j++) {
+                
+            }
+        }
+    }
+
+    setWorkload() {
+
+    }
+
+    addTasks() {
+
     }
 }
 
