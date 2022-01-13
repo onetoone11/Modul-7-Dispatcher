@@ -7,13 +7,6 @@ class Process {
     }
 }
 
-class Node1 {
-    constructor(data, next=null) {
-        this.data = data;
-        this.next = next;
-    }
-}
-
 class Node2 {
     constructor(data, next=null) {
         this.data = data;
@@ -32,44 +25,51 @@ class Node3 {
 
 class CPU1 {
     constructor() {
-        this.head = null;
+        this.array = [];
     }
 
-    length() {
-        let t = this.head;
-        let count = 0;
-        while(t) {
-            count++;
-            t = t.next;
-        }
-        return count;
-    }
-
-    add(data) {
-        // for(let i = 0; i < data.length; i++) {
-        //     let t = new Node(data[i]);
-        //     t.next = this.head;
-        //     this.head = t;
-        // }
-        const add2 = list => data => {
-            if(list === null) {
-                return new Process()
-            }
-        }
+    add(data) { //enqueue
+        this.array.push(data);
     }
 
     remove() { //dequeue(remove head, return head data)
-        let t = this.head.data;
-        if(this.head !== null) {
-            this.head = this.head.next;
-        }
-        return t;
+        this.array.shift();
     }
 
     work(ms) {
-
+        let temp = this.array;
+        var timer = setInterval(function work2() {
+            if(temp.length !== 0) {
+                if(ms > 0) {
+                    if(temp[0].remainingTime <= 0) {
+                        console.log(`finished with ${temp[0].name}`);
+                        temp.shift();
+                    } else {
+                        temp[0].remainingTime -= 1;
+                    }
+                } else {
+                    clearInterval(timer);
+                    console.log('Time alotted has run out');
+                    return;
+                }
+            } else {
+                clearInterval(timer);
+                console.log('No tasks left!');
+                return;
+            }
+            ms--;
+            console.log(ms);
+        }, 10);
+        this.array = temp;
     }
 }
+
+let CPU = new CPU1();
+let a = new Process("hello", 100, 5);
+let b = new Process("hell4", 45, 3);
+CPU.add(a);
+CPU.add(b);
+CPU.work(300);
 
 class CPU2 {
     constructor() {
@@ -96,11 +96,10 @@ class CPU2 {
 
     work(ms) {
         ms = ms/this.length();
-        while(ms > 0) {
-            for(let i = 0; i < this.length(); i++) {
-                
-            }
-            ms--;
+        var timer = setInterval(work2,1);
+
+        function work2() {
+
         }
     }
 }

@@ -105,7 +105,8 @@ const TRUE = a => b => a;
 const FALSE = a => b => b;
 const value = a => a(TRUE);
 const next = a => a(FALSE);
-const Y = (f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v))));
+
+// const BST
 //f is a function which takes two arguments, one function and one value for that function to act on
 //
 const fix = (f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v))));
@@ -121,7 +122,7 @@ const removeFront = list => num => num === 0 || list === false ? list : removeFr
 
 const removeEnd = list => num => num === 0 || list === false ? false : LIST(value(list))(removeEnd(next(list))(num-1));
 
-const createLinkedList = (...x) => x.length === 0 ? false : LIST(x[0])(createLinkedList([...x,]));
+const createLinkedList = (...x) => x.length === 0 ? false : LIST(x[0])(createLinkedList(...x.slice(1)));
 
 const toArray = foldr([])(a => b => [a,...b]);
 
@@ -133,9 +134,24 @@ const deleteHead = next;
 
 const deleteTail = list => next(list) === false ? false : LIST(value(list))(deleteTail(next(list)));
 
-// const insert = list => pos => value => concat(concat(removeFront(list)(pos))(LIST(value)(false)))(removeEnd(list)(pos));
+const insert = list => value => LIST(value)(list);
 
-const showAll = list => console.log('Linked List: [' + toArray(list).join(', ') + ']');
+const showAll = list => 'Linked List: [' + toArray(list).join(', ') + ']';
+
+const generate = list => num => num === 0 ? list : LIST(Math.ceil(Math.random()*1000))(generate(list)(num-1));
+
+//binary search tree
+
+const insertBST = tree => data => {
+    if(tree === false) {
+        return LIST(data)(false);
+    }
+    if(data > value(tree)) {
+
+    }
+}
+
+
 
 class Node {
     constructor(data, next=null) {
@@ -150,12 +166,16 @@ class LinkedList {
         this.tail = null;
     }
 
-    insert(...data) {
-        for(let i = 0; i < data.length; i++) {
-            let t = new Node(data[i]);
-            t.next = this.head;
-            this.head = t;
-        }
+    // insert(...data) {
+    //     for(let i = 0; i < data.length; i++) {
+    //         let t = new Node(data[i]);
+    //         t.next = this.head;
+    //         this.head = t;
+    //     }
+    // }
+
+    insert(data) {
+
     }
 
     length() {
@@ -204,15 +224,26 @@ class LinkedList {
 class CircularLinkedList {
     constructor() {
         this.head = null;
+        this.length = 0;
     }
 
     insert(data) {
+        this.length += 1;
         let t = new Node(data);
         if(this.head === null) {
             t.next = t;
             this.head = t;
         } else {
-            
+            t.next = this.head;
+            const traverse = list => data => pos => {
+                if(pos === 0) {
+                    return data;
+                } else {
+                    list.next = traverse(list.next)(data)(pos-1)
+                }
+                return list;
+            }
+            this.head = traverse(this.head)(t)(this.length);
         }
     }
 }
