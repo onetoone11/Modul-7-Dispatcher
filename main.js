@@ -1,5 +1,7 @@
 // Website HTML
 
+const { Chart } = require("chart.js");
+
 
 // ScrollFunctions Start
 let topBtn = document.querySelector(".top");
@@ -109,6 +111,66 @@ function bottomFunction(){
 //   // config 
 //   const config1 = {
 //     type: 'bar',
+//     data1,
+//     options: {
+//         maintainAspectRatio: false,
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     },
+//   };
+
+
+
+  // // render init block
+//   const myChart1 = new Chart(
+//     document.getElementById('myChart1'),
+//     config1
+//   );
+
+
+const myChart1 = new Chart(document.getElementById('myChart1'), {
+    type: 'bar',
+    data: {
+        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        datasets: [{
+            label: 'Remaining time',
+            data: [50, 890, 220, 30,],
+            backgroundColor: [
+                'rgb(247, 141, 11)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+});
+
+// //   Chart 2
+
+// const data = {
+//     labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+//     datasets: [{
+//       label: 'Remaining time',
+//       data: [50, 890, 220, 30,],
+//       backgroundColor: [
+//         'rgb(247, 141, 11)'
+//       ],
+//       borderWidth: 1
+//     }]
+//   };
+
+//   // config 
+//   const config = {
+//     type: 'bar',
 //     data,
 //     options: {
 //         maintainAspectRatio: false,
@@ -123,85 +185,48 @@ function bottomFunction(){
 
 
 //   // // render init block
-//   const myChart1 = new Chart(
-//     document.getElementById('myChart1'),
-//     config1
+//   const myChart2 = new Chart(
+//     document.getElementById('myChart2'),
+//     config
 //   );
-
-
-//   Chart 2
-
-const data = {
-    labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
-    datasets: [{
-      label: 'Remaining time',
-      data: [50, 890, 220, 30,],
-      backgroundColor: [
-        'rgb(247, 141, 11)'
-      ],
-      borderWidth: 1
-    }]
-  };
-
-  // config 
-  const config = {
-    type: 'bar',
-    data,
-    options: {
-        maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    },
-  };
-
-
-
-  // // render init block
-  const myChart2 = new Chart(
-    document.getElementById('myChart2'),
-    config
-  );
 
 
 
   //   Chart 3
 
-const data3 = {
-    labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
-    datasets: [{
-      label: 'Remaining time',
-      data: [50, 890, 220, 30,],
-      backgroundColor: [
-        'rgb(247, 141, 11)'
-      ],
-      borderWidth: 1
-    }]
-  };
+// const data3 = {
+//     labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+//     datasets: [{
+//       label: 'Remaining time',
+//       data: [50, 890, 220, 30,],
+//       backgroundColor: [
+//         'rgb(247, 141, 11)'
+//       ],
+//       borderWidth: 1
+//     }]
+//   };
 
-  // config 
-  const config3 = {
-    type: 'bar',
-    data,
-    options: {
-        maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    },
-  };
+//   // config 
+//   const config3 = {
+//     type: 'bar',
+//     data,
+//     options: {
+//         maintainAspectRatio: false,
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     },
+//   };
 
 
 
-  // // render init block
-  const myChart3 = new Chart(
-    document.getElementById('myChart3'),
-    config3
-  );
+//   // // render init block
+//   const myChart3 = new Chart(
+//     document.getElementById('myChart3'),
+//     config3
+//   );
 
 // Chart End
 
