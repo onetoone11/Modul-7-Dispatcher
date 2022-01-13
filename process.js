@@ -10,6 +10,9 @@ class Process {
 class Node2 {
     constructor(data, next=null) {
         this.data = data;
+        // this.work_name = work_name;
+        // this.work_time = work_time;
+        // this.work_prio = work_prio;
         this.next = next;
     }
 }
@@ -58,7 +61,7 @@ class CPU1 {
                 return;
             }
             ms--;
-            console.log(ms);
+            // console.log(ms);
         }, 10);
         this.array = temp;
     }
@@ -78,12 +81,47 @@ new Node2(new Process("test", 100, 5));
 class CPU2 {
     constructor() {
         this.head = null;
+        this.length = 0;
     }
 
     add(process) {
-        let t = new Node1(process);
-        t.next = this.head;
-        this.head = t;
+
+        if(this.length == 0){
+            // let t = new Node2(process);
+            // t.next = this.head;
+            this.head = new Node2(process);
+        }
+        else if(this.length == 1){
+            let t = this.head
+            let temp = new Node2(process);
+
+            t.next = temp;
+            temp.next = this.head;
+
+            this.head = t;
+        }
+        else{
+            // this.length = this.length + 1;
+            return hmm(this.head, this.length, this.head);
+        }
+
+        function hmm(pos, length, head){
+
+            if(length == 1){
+                console.log(pos);
+                let temp = new Node2(process);
+                temp.next = head;
+                pos.next = temp;
+                console.log(pos);
+                // this.length = this.length + 1;
+            }
+            else{
+                return hmm(pos.next, length-1, head);
+            }
+        }
+
+        // length 
+        this.length = this.length + 1;
     }
 
     remove(process) {
@@ -107,6 +145,16 @@ class CPU2 {
         }
     }
 }
+
+let cpu2 = new CPU2();
+let ab = new Process('hello1', 50, 5);
+let bc = new Process('hello2', 50, 5);
+let cd = new Process('hello3', 50, 5);
+let de = new Process('hello4', 50, 5);
+cpu2.add(ab);
+cpu2.add(bc);
+cpu2.add(cd);
+cpu2.add(de);
 
 class CPU3 {
     constructor() {
@@ -160,6 +208,6 @@ class Dispatcher {
 
 
 function Scheduler(work) {
-    
+
 }
 
