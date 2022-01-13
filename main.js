@@ -5,14 +5,14 @@ const { Chart } = require("chart.js");
 
 // ScrollFunctions Start
 let topBtn = document.querySelector(".top");
-        
-window.onscroll = function() {scrollFunction()};
+
+window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
     if (document.body.scrollTop > 650 || document.documentElement.scrollTop > 650) {
-    topBtn.style.display = "block";
+        topBtn.style.display = "block";
     } else {
-    topBtn.style.display = "none";
+        topBtn.style.display = "none";
     }
 }
 
@@ -21,7 +21,7 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
-function bottomFunction(){
+function bottomFunction() {
     document.body.scrollTop = 650;
     document.documentElement.scrollTop = 650;
     // topBtn.style.display = 'block';
@@ -131,7 +131,22 @@ function bottomFunction(){
 //   );
 
 
-const myChart1 = new Chart(document.getElementById('myChart1'), {
+//   Chart 2
+
+const data = {
+    labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+    datasets: [{
+        label: 'Remaining time',
+        data: [50, 890, 220, 30,],
+        backgroundColor: [
+            'rgb(247, 141, 11)'
+        ],
+        borderWidth: 1
+    }]
+};
+
+// config 
+const config = {
     type: 'bar',
     data: {
         labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
@@ -146,13 +161,13 @@ const myChart1 = new Chart(document.getElementById('myChart1'), {
     },
     options: {
         maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true
+        scales: {
+            y: {
+                beginAtZero: true
+            }
         }
-      }
     },
-});
+};
 
 // //   Chart 2
 
@@ -168,37 +183,21 @@ const myChart1 = new Chart(document.getElementById('myChart1'), {
 //     }]
 //   };
 
-//   // config 
-//   const config = {
-//     type: 'bar',
-//     data,
-//     options: {
-//         maintainAspectRatio: false,
-//       scales: {
-//         y: {
-//           beginAtZero: true
-//         }
-//       }
-//     },
-//   };
+// // render init block
+const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config
+);
 
 
 
-//   // // render init block
-//   const myChart2 = new Chart(
-//     document.getElementById('myChart2'),
-//     config
-//   );
-
-
-
-  //   Chart 3
+//   Chart 3
 
 // const data3 = {
 //     labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
 //     datasets: [{
 //       label: 'Remaining time',
-//       data: [50, 890, 220, 30,],
+//       data: [50, 3, 220, 30,],
 //       backgroundColor: [
 //         'rgb(247, 141, 11)'
 //       ],
@@ -220,6 +219,19 @@ const myChart1 = new Chart(document.getElementById('myChart1'), {
 //     },
 //   };
 
+//   // config 
+//   const config3 = {
+//     type: 'bar',
+//     data,
+//     options: {
+//         maintainAspectRatio: false,
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     },
+//   };
 
 
 //   // // render init block
@@ -230,7 +242,28 @@ const myChart1 = new Chart(document.getElementById('myChart1'), {
 
 // Chart End
 
-
+const myChart = new Chart(document.getElementById('myChart3'), {
+    type: 'bar',
+    data: {
+        labels: ['Delete data', 'Test', 'Print text', 'Input Handle', ''],
+        datasets: [{
+            label: 'Remaining time',
+            data: [50, 39, 220, 30,],
+            backgroundColor: [
+                'rgb(247, 141, 11)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    },
+});
 
 
 
@@ -256,13 +289,13 @@ const foldr = base => func => fix(f => list => list === false ? base : func(valu
 
 const concat = list1 => foldr(list1)(a => b => LIST(a)(b));
 
-const removeFront = list => num => num === 0 || list === false ? list : removeFront(next(list))(num-1);
+const removeFront = list => num => num === 0 || list === false ? list : removeFront(next(list))(num - 1);
 
-const removeEnd = list => num => num === 0 || list === false ? false : LIST(value(list))(removeEnd(next(list))(num-1));
+const removeEnd = list => num => num === 0 || list === false ? false : LIST(value(list))(removeEnd(next(list))(num - 1));
 
 const createLinkedList = (...x) => x.length === 0 ? false : LIST(x[0])(createLinkedList(...x.slice(1)));
 
-const toArray = foldr([])(a => b => [a,...b]);
+const toArray = foldr([])(a => b => [a, ...b]);
 
 // necessary functions(length, deleteHead, deleteTail, insert, showAll, sort, generate)
 
@@ -276,15 +309,15 @@ const insert = list => value => LIST(value)(list);
 
 const showAll = list => 'Linked List: [' + toArray(list).join(', ') + ']';
 
-const generate = list => num => num === 0 ? list : LIST(Math.ceil(Math.random()*1000))(generate(list)(num-1));
+const generate = list => num => num === 0 ? list : LIST(Math.ceil(Math.random() * 1000))(generate(list)(num - 1));
 
 //binary search tree
 
 const insertBST = tree => data => {
-    if(tree === false) {
+    if (tree === false) {
         return LIST(data)(false);
     }
-    if(data > value(tree)) {
+    if (data > value(tree)) {
 
     }
 }
@@ -292,7 +325,7 @@ const insertBST = tree => data => {
 
 
 class Node {
-    constructor(data, next=null) {
+    constructor(data, next = null) {
         this.head = data;
         this.next = next;
     }
@@ -319,7 +352,7 @@ class LinkedList {
     length() {
         let t = this.head;
         let count = 0;
-        while(t) {
+        while (t) {
             count++;
             t = t.next;
         }
@@ -328,29 +361,29 @@ class LinkedList {
 
     deleteTail() {
         let t = this.head;
-        while(t.next.next != null) {
+        while (t.next.next != null) {
             t = t.next;
         }
         t.next = null;
     }
 
     deleteHead() {
-        if(this.head !== null) {
+        if (this.head !== null) {
             this.head = this.head.next;
         }
     }
 
     showAll() {
         let t = this.head;
-        while(t) {
+        while (t) {
             console.log(t.head);
             t = t.next;
         }
     }
 
     generate(num) {
-        for(let i = 0; i < num; i++) {
-            this.insert(Math.ceil(Math.random()*1000));
+        for (let i = 0; i < num; i++) {
+            this.insert(Math.ceil(Math.random() * 1000));
         }
     }
 
@@ -368,16 +401,16 @@ class CircularLinkedList {
     insert(data) {
         this.length += 1;
         let t = new Node(data);
-        if(this.head === null) {
+        if (this.head === null) {
             t.next = t;
             this.head = t;
         } else {
             t.next = this.head;
             const traverse = list => data => pos => {
-                if(pos === 0) {
+                if (pos === 0) {
                     return data;
                 } else {
-                    list.next = traverse(list.next)(data)(pos-1)
+                    list.next = traverse(list.next)(data)(pos - 1)
                 }
                 return list;
             }
