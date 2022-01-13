@@ -4,6 +4,10 @@ body{
     overflow-x: hidden;
 }
 
+canvas{
+    background-color: rgba(44, 44, 44, 0.95);
+}
+
 .background-img{
     background-image: url('media/processor.png');
     background-repeat: no-repeat;
@@ -80,8 +84,9 @@ button:hover{
 /* Work list */
 
 .work-list{
-    background-color: #2C2C2C;
-    opacity: 0.8;
+    /* background-color: #2C2C2C; */
+    /* opacity: 0.8; */
+    background-color: rgba(44, 44, 44, 0.8);
     width: 300px;
     color: #fff;
     margin: auto;
@@ -130,6 +135,17 @@ li{
     /* float: right;
     padding-right: 12px; */
 }
+
+/* Chart */
+
+.chartBox{
+    width: 300px;
+    /* height: 300px; */
+    /* background: black; */
+    background-color: rgba(44, 44, 44, 0.8);
+    opacity: 0.8;
+}
+
 
 /* Egen css */
 

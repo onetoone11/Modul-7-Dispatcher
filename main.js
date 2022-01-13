@@ -1,3 +1,103 @@
+// Website HTML
+
+
+// ScrollFunctions Start
+let topBtn = document.querySelector(".top");
+        
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 650 || document.documentElement.scrollTop > 650) {
+    topBtn.style.display = "block";
+    } else {
+    topBtn.style.display = "none";
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+function bottomFunction(){
+    document.body.scrollTop = 650;
+    document.documentElement.scrollTop = 650;
+    // topBtn.style.display = 'block';
+}
+// Scrollfunctions End
+
+// Chart Start
+
+const data = {
+    labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+    datasets: [{
+      label: 'Remaining time',
+      data: [50, 890, 220, 30,],
+      backgroundColor: [
+        'rgb(247, 141, 11)'
+        // 'rgba(255, 26, 104, 0.2)',
+        // 'rgba(54, 162, 235, 0.2)',
+        // 'rgba(255, 206, 86, 0.2)',
+        // 'rgba(75, 192, 192, 0.2)',
+        // 'rgba(153, 102, 255, 0.2)',
+        // 'rgba(255, 159, 64, 0.2)',
+        // 'rgba(0, 0, 0, 0.2)'
+      ],
+    //   borderColor: [
+    //     'rgba(255, 26, 104, 1)',
+    //     'rgba(54, 162, 235, 1)',
+    //     'rgba(255, 206, 86, 1)',
+    //     'rgba(75, 192, 192, 1)',
+    //     'rgba(153, 102, 255, 1)',
+    //     'rgba(255, 159, 64, 1)',
+    //     'rgba(0, 0, 0, 1)'
+    //   ],
+      borderWidth: 1
+    }]
+  };
+
+  // config 
+  const config = {
+    type: 'bar',
+    data,
+    options: {
+    //   plugins: {
+    //       autocolors: false,
+    //       annotation: {
+    //           annotations: {
+    //               box1: {
+    //                   type: 'box',
+    //                   xMin: 0.5,
+    //                   xMax: 1.5,
+    //                   yMin: 0,
+    //                   yMax: 2
+    //               }
+    //           }
+    //       }
+    //   },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+    // plugins: ['chartjs-plugin-annotation']
+  };
+
+  // render init block
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+// Chart End
+
+
+
+
+
+
+
 const LIST = head => tail => f => f(head)(tail);
 const L = LIST;
 const compose = f => g => a => f(g(a));
