@@ -1,11 +1,7 @@
 body{
     background-color: #313131;
-    height: 300vh;
+    height: 350vh;
     overflow-x: hidden;
-}
-
-canvas{
-    background-color: rgba(44, 44, 44, 0.95);
 }
 
 .background-img{
@@ -13,7 +9,7 @@ canvas{
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 100vw;
-    height: 300vh;
+    height: 350vh;
     opacity: 0.1;
     position: absolute;
     z-index: -1;
@@ -84,56 +80,22 @@ button:hover{
 /* Work list */
 
 .work-list{
-    /* background-color: #2C2C2C; */
-    /* opacity: 0.8; */
     background-color: rgba(44, 44, 44, 0.8);
     width: 300px;
     color: #fff;
     margin: auto;
-    /* padding-left: 12px; */
-    /* padding-top: 12px; */
 }
 
 .p-worklist{
     height: 25px;
     padding-left: 12px;
-    /* margin: 0 !important;
-    padding: 0 0 0 12px; */
 }
 
 hr{
     width: 280px;
-    /* height: 12px; */
     padding-top: 2px;
-    /* margin-top: 20px; */
     margin-left: 12px;
     border: none;
-}
-
-/* ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-li{
-    display: inline;
-} */
-
-.work_name{
-    /* position: absolute; */
-    /* float: left;
-    padding-left: 12px; */
-}
-
-.work_time{
-    /* position: absolute;
-    left: 300px; */
-}
-
-.work_prio{
-    /* float: right;
-    padding-right: 12px; */
 }
 
 /* Chart */
@@ -141,12 +103,11 @@ li{
 .chartBox{
     width: 300px;
     height: 300px;
-    /* background: black; */
     background-color: rgba(44, 44, 44, 0.8);
     opacity: 0.8;
     margin: auto;
+    padding: 12px;
 }
-
 
 /* Egen css */
 

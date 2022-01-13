@@ -1,6 +1,6 @@
 // Website HTML
 
-const { Chart } = require("chart.js");
+// const { Chart } = require("chart.js");
 
 
 // ScrollFunctions Start
@@ -30,123 +30,7 @@ function bottomFunction() {
 
 // Chart Start
 
-// const data2 = {
-//     labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
-//     datasets: [{
-//       label: 'Remaining time',
-//       data: [50, 890, 220, 30,],
-//       backgroundColor: [
-//         'rgb(247, 141, 11)'
-//         // 'rgba(255, 26, 104, 0.2)',
-//         // 'rgba(54, 162, 235, 0.2)',
-//         // 'rgba(255, 206, 86, 0.2)',
-//         // 'rgba(75, 192, 192, 0.2)',
-//         // 'rgba(153, 102, 255, 0.2)',
-//         // 'rgba(255, 159, 64, 0.2)',
-//         // 'rgba(0, 0, 0, 0.2)'
-//       ],
-//     //   borderColor: [
-//     //     'rgba(255, 26, 104, 1)',
-//     //     'rgba(54, 162, 235, 1)',
-//     //     'rgba(255, 206, 86, 1)',
-//     //     'rgba(75, 192, 192, 1)',
-//     //     'rgba(153, 102, 255, 1)',
-//     //     'rgba(255, 159, 64, 1)',
-//     //     'rgba(0, 0, 0, 1)'
-//     //   ],
-//       borderWidth: 1
-//     }]
-//   };
-
-//   // config 
-//   const config2 = {
-//     type: 'bar',
-//     data2,
-//     options: {
-//         maintainAspectRatio: false,
-//     //   plugins: {
-//     //       autocolors: false,
-//     //       annotation: {
-//     //           annotations: {
-//     //               box1: {
-//     //                   type: 'box',
-//     //                   xMin: 0.5,
-//     //                   xMax: 1.5,
-//     //                   yMin: 0,
-//     //                   yMax: 2
-//     //               }
-//     //           }
-//     //       }
-//     //   },
-//       scales: {
-//         y: {
-//           beginAtZero: true
-//         }
-//       }
-//     },
-//     // plugins: ['chartjs-plugin-annotation']
-//   };
-
-//   // render init block
-//   const myChart1 = new Chart(
-//     document.getElementById('myChart1'),
-//     config2
-//   );
-
-
-//   Chart 1
-
-// const data1 = {
-//     labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
-//     datasets: [{
-//       label: 'Remaining time',
-//       data: [50, 890, 220, 30,],
-//       backgroundColor: [
-//         'rgb(247, 141, 11)'
-//       ],
-//       borderWidth: 1
-//     }]
-//   };
-
-//   // config 
-//   const config1 = {
-//     type: 'bar',
-//     data1,
-//     options: {
-//         maintainAspectRatio: false,
-//       scales: {
-//         y: {
-//           beginAtZero: true
-//         }
-//       }
-//     },
-//   };
-
-
-
-  // // render init block
-//   const myChart1 = new Chart(
-//     document.getElementById('myChart1'),
-//     config1
-//   );
-
-
-//   Chart 2
-
-const data = {
-    labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
-    datasets: [{
-        label: 'Remaining time',
-        data: [50, 890, 220, 30,],
-        backgroundColor: [
-            'rgb(247, 141, 11)'
-        ],
-        borderWidth: 1
-    }]
-};
-
-// config 
-const config = {
+let myChar1 = new Chart(document.getElementById('myChart1'), {
     type: 'bar',
     data: {
         labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
@@ -167,88 +51,15 @@ const config = {
             }
         }
     },
-};
+});
 
-// //   Chart 2
-
-// const data = {
-//     labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
-//     datasets: [{
-//       label: 'Remaining time',
-//       data: [50, 890, 220, 30,],
-//       backgroundColor: [
-//         'rgb(247, 141, 11)'
-//       ],
-//       borderWidth: 1
-//     }]
-//   };
-
-// // render init block
-const myChart2 = new Chart(
-    document.getElementById('myChart2'),
-    config
-);
-
-
-
-//   Chart 3
-
-// const data3 = {
-//     labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
-//     datasets: [{
-//       label: 'Remaining time',
-//       data: [50, 3, 220, 30,],
-//       backgroundColor: [
-//         'rgb(247, 141, 11)'
-//       ],
-//       borderWidth: 1
-//     }]
-//   };
-
-//   // config 
-//   const config3 = {
-//     type: 'bar',
-//     data,
-//     options: {
-//         maintainAspectRatio: false,
-//       scales: {
-//         y: {
-//           beginAtZero: true
-//         }
-//       }
-//     },
-//   };
-
-//   // config 
-//   const config3 = {
-//     type: 'bar',
-//     data,
-//     options: {
-//         maintainAspectRatio: false,
-//       scales: {
-//         y: {
-//           beginAtZero: true
-//         }
-//       }
-//     },
-//   };
-
-
-//   // // render init block
-//   const myChart3 = new Chart(
-//     document.getElementById('myChart3'),
-//     config3
-//   );
-
-// Chart End
-
-const myChart = new Chart(document.getElementById('myChart3'), {
+let myChart2 = new Chart(document.getElementById('myChart2'), {
     type: 'bar',
     data: {
-        labels: ['Delete data', 'Test', 'Print text', 'Input Handle', ''],
+        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
         datasets: [{
             label: 'Remaining time',
-            data: [50, 39, 220, 30,],
+            data: [50, 890, 220, 30,],
             backgroundColor: [
                 'rgb(247, 141, 11)'
             ],
@@ -264,6 +75,101 @@ const myChart = new Chart(document.getElementById('myChart3'), {
         }
     },
 });
+
+let myChart3 = new Chart(document.getElementById('myChart3'), {
+    type: 'bar',
+    data: {
+        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        datasets: [{
+            label: 'Remaining time',
+            data: [50, 890, 220, 30,],
+            backgroundColor: [
+                'rgb(247, 141, 11)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    },
+});
+
+
+// Circular 
+
+
+let myChar11 = new Chart(document.getElementById('myChart11'), {
+    type: 'pie',
+    data: {
+        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        datasets: [{
+            label: 'Remaining time',
+            data: [50, 890, 220, 30,],
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+    },
+});
+
+let myChart22 = new Chart(document.getElementById('myChart22'), {
+    type: 'pie',
+    data: {
+        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        datasets: [{
+            label: 'Remaining time',
+            data: [50, 890, 220, 30,],
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+    },
+});
+
+let myChart33 = new Chart(document.getElementById('myChart33'), {
+    type: 'pie',
+    data: {
+        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        datasets: [{
+            label: 'Remaining time',
+            data: [50, 890, 220, 30,],
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+    },
+});
+
+// Chart End
 
 
 
