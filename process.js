@@ -101,19 +101,16 @@ class CPU2 {
             this.head = t;
         }
         else{
-            // this.length = this.length + 1;
+            this.length = this.length + 1;
             return hmm(this.head, this.length, this.head);
         }
 
         function hmm(pos, length, head){
 
-            if(length == 1){
-                console.log(pos);
+            if(length == 2){
                 let temp = new Node2(process);
                 temp.next = head;
                 pos.next = temp;
-                console.log(pos);
-                // this.length = this.length + 1;
             }
             else{
                 return hmm(pos.next, length-1, head);
