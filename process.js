@@ -41,7 +41,7 @@ class CPU1 {
         var timer = setInterval(function work2() {
             if(temp.length !== 0) {
                 if(ms > 0) {
-                    if(temp[0].remainingTime <= 0) {
+                    if(temp[0].remainingTime <= 1) {
                         console.log(`finished with ${temp[0].name}`);
                         temp.shift();
                     } else {
@@ -66,9 +66,11 @@ class CPU1 {
 
 let CPU = new CPU1();
 let a = new Process("hello", 100, 5);
-let b = new Process("hell4", 45, 3);
+let b = new Process("hell4", 50, 3);
+let c = new Process("hhhhhhh", 50, 3);
 CPU.add(a);
 CPU.add(b);
+CPU.add(c);
 CPU.work(300);
 
 class CPU2 {
@@ -120,5 +122,22 @@ class CPU3 {
     work(ms) {
 
     }
+}
+
+class Dispatcher {
+    constructor(tasks, workLoad) {
+        this.workLoad = workLoad;
+        this.tasks = tasks;
+        this.CPUs = [];
+    }
+
+    start() {
+        
+    }
+}
+
+
+function Scheduler() {
+
 }
 
