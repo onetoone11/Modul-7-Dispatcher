@@ -121,11 +121,31 @@ class CPU2 {
 
     remove(pos) {
 
-        this.length = this.length - 1;
+        // this.length = this.length - 1;
 
+        let temp = [];
 
+        // let length = this.length; 
+
+        saveList(pos, this.head, this.length);
+
+        function saveList(pos, head, length){
+            pos--;
+            length--;
+            if(pos == 0){
+                return saveList(pos, head.next, length);
+            }
+            else{
+                // temp[temp.length] = [head.data.name, head.data.remainingTime, head.data.priority];
+                return saveList(pos, head.next, length);
+            }
+        }
+
+        console.log('fungerar denna consolen?');
         
         function posRemove(pos, list){
+
+
 
             pos--;
             console.log('pos: ' + pos);
@@ -151,7 +171,7 @@ class CPU2 {
 
         }
 
-        return posRemove(pos, this.head);
+        // return posRemove(pos, this.head);
         // let t = this.head.data;
         // if(this.head !== null) {
         //     this.head = this.head.next;
@@ -183,34 +203,57 @@ class CPU2 {
     }
 
     work(ms) {
-        ms = ms/this.length;
-        return work2(this.head, ms, this.length);
-        var timer = setInterval(work2,1);
+        // ms = ms/this.length;
+        
+        // var timer = setInterval(work2,1);
 
-        function work2(list, ms, length) {
-            if(length == 0){
-                console.log('klart');
+        function work2(list, ms){
+            if(ms == 0){
+                return;
             }
             else{
-                if(list.data.remainingTime > ms){
-                    list.data.remainingTime = list.data.remainingTime - ms;
-                }
-                else if(list.data.remainingTime == ms){
-                    // Remove, men inget över
-                    list.data.remainingTime = list.data.remainingTime - ms;
-
-                    // remove()
+                // ms--; 
+                
+                if(list.data.remainingTime == 0){
+                    // remove
+                    // list.data.remainingTime = list.data.remainingTime - 1;
+                    work2(list.next, ms);
                 }
                 else{
-                    // Remove, men kör en work igen.
-                    list.data.remainingTime = list.data.remainingTime - ms;
-                    let newMs = list.data.remainingTime * (-1); 
-                    // detta måste fixas
+                    list.data.remainingTime = list.data.remainingTime - 1;
+                    work2(list.next, ms-1); 
                 }
                 
-                return work2(list.next, ms, length-1);
+                
             }
         }
+        return work2(this.head, ms);
+        console.log('finns denna?');
+        
+        // function work2(list, ms, length) {
+        //     if(length == 0){
+        //         console.log('klart');
+        //     }
+        //     else{
+        //         if(list.data.remainingTime > ms){
+        //             list.data.remainingTime = list.data.remainingTime - ms;
+        //         }
+        //         else if(list.data.remainingTime == ms){
+        //             // Remove, men inget över
+        //             list.data.remainingTime = list.data.remainingTime - ms;
+
+        //             // remove()
+        //         }
+        //         else{
+        //             // Remove, men kör en work igen.
+        //             list.data.remainingTime = list.data.remainingTime - ms;
+        //             let newMs = list.data.remainingTime * (-1); 
+        //             // detta måste fixas
+        //         }
+                
+        //         return work2(list.next, ms, length-1);
+        //     }
+        // }
 
     }
 }
@@ -229,7 +272,7 @@ cpu2.add(ef);
 
 // cpu2.remove(2);
 
-cpu2.work(10);
+// cpu2.work(10);
 
 class CPU3 {
     constructor() {
