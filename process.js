@@ -61,7 +61,7 @@ class CPU1 {
                 return;
             }
             ms--;
-            alert(ms);
+            // console.log(ms);
         }, 10);
         this.array = temp;
     }
@@ -75,8 +75,6 @@ CPU.add(a);
 CPU.add(b);
 CPU.add(c);
 CPU.work(300);
-
-new Node2(new Process("test", 100, 5));
 
 class CPU2 {
     constructor() {
@@ -102,10 +100,10 @@ class CPU2 {
         }
         else{
             this.length = this.length + 1;
-            return hmm(this.head, this.length, this.head);
+            return makeCircle(this.head, this.length, this.head);
         }
 
-        function hmm(pos, length, head){
+        function makeCircle(pos, length, head){
 
             if(length == 2){
                 let temp = new Node2(process);
@@ -113,7 +111,7 @@ class CPU2 {
                 pos.next = temp;
             }
             else{
-                return hmm(pos.next, length-1, head);
+                return makeCircle(pos.next, length-1, head);
             }
         }
 
@@ -121,11 +119,62 @@ class CPU2 {
         this.length = this.length + 1;
     }
 
-    remove(process) {
-        let t = this.head.data;
-        if(this.head !== null) {
-            this.head = this.head.next;
+    remove(pos) {
+
+        this.length = this.length - 1;
+
+
+        
+        function posRemove(pos, list){
+
+            pos--;
+            console.log('pos: ' + pos);
+
+            if(pos == 0){
+                console.log('list');
+                console.log(list);
+                console.log('list.next');
+                console.log(list.next);
+                list = list.next;
+                console.log('list2');
+                console.log(list);
+                
+                // return list;
+                // list = 0;
+                // return;
+                
+            }
+            else{
+                // pos = pos - 1;
+                return posRemove(pos, list.next);
+            }
+
         }
+
+        return posRemove(pos, this.head);
+        // let t = this.head.data;
+        // if(this.head !== null) {
+        //     this.head = this.head.next;
+        // }
+
+        // if(this.length > 2){
+        //     return hmm(this.head, this.length, this.head, pos)
+        // }
+        // else{
+        //     console.log('hmm');
+        // }
+
+        // function hmm(list, pos){
+            
+        //     if(pos == 2){
+        //         console.log(list);
+        //         list.next = list;
+        //     }
+        //     else{
+        //         return hmm(list.next, pos-1);
+        //     }
+
+        // }
     }
 
     length() {
@@ -134,23 +183,53 @@ class CPU2 {
     }
 
     work(ms) {
-        // ms = ms/this.length;
-        // let current = this.head;
-        // while(ms > 0) {
-        //     if(current.data.remainingTime > 0)
-        // }
+        ms = ms/this.length;
+        return work2(this.head, ms, this.length);
+        var timer = setInterval(work2,1);
+
+        function work2(list, ms, length) {
+            if(length == 0){
+                console.log('klart');
+            }
+            else{
+                if(list.data.remainingTime > ms){
+                    list.data.remainingTime = list.data.remainingTime - ms;
+                }
+                else if(list.data.remainingTime == ms){
+                    // Remove, men inget över
+                    list.data.remainingTime = list.data.remainingTime - ms;
+
+                    // remove()
+                }
+                else{
+                    // Remove, men kör en work igen.
+                    list.data.remainingTime = list.data.remainingTime - ms;
+                    let newMs = list.data.remainingTime * (-1); 
+                    // detta måste fixas
+                }
+                
+                return work2(list.next, ms, length-1);
+            }
+        }
+
     }
 }
 
 let cpu2 = new CPU2();
-let ab = new Process('hello1', 50, 5);
-let bc = new Process('hello2', 50, 5);
-let cd = new Process('hello3', 50, 5);
-let de = new Process('hello4', 50, 5);
+let ab = new Process('hello1', 2, 5);
+let bc = new Process('hello2', 6, 5);
+let cd = new Process('hello3', 7, 5);
+let de = new Process('hello4', 8, 5);
+let ef = new Process('hello4', 9, 5);
 cpu2.add(ab);
 cpu2.add(bc);
 cpu2.add(cd);
 cpu2.add(de);
+cpu2.add(ef);
+
+// cpu2.remove(2);
+
+cpu2.work(10);
 
 class CPU3 {
     constructor() {
