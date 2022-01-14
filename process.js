@@ -61,7 +61,7 @@ class CPU1 {
                 return;
             }
             ms--;
-            alert(ms);
+            // console.log(ms);
         }, 10);
         this.array = temp;
     }
@@ -75,8 +75,6 @@ CPU.add(a);
 CPU.add(b);
 CPU.add(c);
 CPU.work(300);
-
-new Node2(new Process("test", 100, 5));
 
 class CPU2 {
     constructor() {
@@ -140,6 +138,7 @@ class CPU2 {
                 list = list.next;
                 console.log('list2');
                 console.log(list);
+                
                 // return list;
                 // list = 0;
                 // return;
@@ -184,7 +183,6 @@ class CPU2 {
     }
 
     work(ms) {
-<<<<<<< HEAD
         ms = ms/this.length;
         return work2(this.head, ms, this.length);
         var timer = setInterval(work2,1);
@@ -214,13 +212,6 @@ class CPU2 {
             }
         }
 
-=======
-        // ms = ms/this.length;
-        // let current = this.head;
-        // while(ms > 0) {
-        //     if(current.data.remainingTime > 0)
-        // }
->>>>>>> 513744f8e9dbde73acea2d0c474f716a2aa160fc
     }
 }
 
