@@ -61,7 +61,7 @@ class CPU1 {
                 return;
             }
             ms--;
-            // console.log(ms);
+            alert(ms);
         }, 10);
         this.array = temp;
     }
@@ -184,6 +184,7 @@ class CPU2 {
     }
 
     work(ms) {
+<<<<<<< HEAD
         ms = ms/this.length;
         return work2(this.head, ms, this.length);
         var timer = setInterval(work2,1);
@@ -213,6 +214,13 @@ class CPU2 {
             }
         }
 
+=======
+        // ms = ms/this.length;
+        // let current = this.head;
+        // while(ms > 0) {
+        //     if(current.data.remainingTime > 0)
+        // }
+>>>>>>> 513744f8e9dbde73acea2d0c474f716a2aa160fc
     }
 }
 
@@ -286,4 +294,3 @@ class Dispatcher {
 function Scheduler(work) {
 
 }
-

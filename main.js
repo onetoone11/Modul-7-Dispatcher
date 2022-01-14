@@ -29,6 +29,11 @@ function bottomFunction() {
 // Scrollfunctions End
 
 // Chart Start
+let CPU_data = {//info som delas mellan charts som tillhör samma CPU. 
+    CPU_1: [],
+    CPU_2: [],
+    CPU_3: []
+}
 
 let myChar1 = new Chart(document.getElementById('myChart1'), {
     type: 'bar',
@@ -169,10 +174,48 @@ let myChart33 = new Chart(document.getElementById('myChart33'), {
     },
 });
 
+
+//funktioner för att redigera värdena i Charts
+function editDataAtPos(chart, pos, data) {//redigerar datavärde på visst index
+    chart.data.datasets[0].data[pos] = data
+    chart.update();
+}
+
+function editDataWithLabel(chart, label, data) {//redigerar datavärde med viss label
+    let index = chart.data.labels.indexOf(label);
+    if(index !== -1) {
+        editDataAtPos(chart, index, data);
+    } else {
+        alert("Error, label not found");
+    }
+}
+
+function addData(chart, label, data) {//lägg till ett till värde i tabellen
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    chart.update();
+}
+
+function removeDataAtPos(chart, pos) {//ta bort data vid given position
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.splice(pos,1);
+    });
+    chart.data.labels.splice(pos,1);
+    chart.update();
+}
+
+function removeDataWithLabel(chart, label) {//ta bort data med viss label
+    let index = chart.data.labels.indexOf(label);
+    if(index !== -1) {
+        removeDataAtPos(chart, index);
+    } else {
+        alert("Error, label not found");
+    }
+}
+
 // Chart End
-
-
-
 
 
 const LIST = head => tail => f => f(head)(tail);
@@ -182,6 +225,9 @@ const TRUE = a => b => a;
 const FALSE = a => b => b;
 const value = a => a(TRUE);
 const next = a => a(FALSE);
+
+const TREE = LIST;
+const FOREST = TREE;
 
 // const BST
 //f is a function which takes two arguments, one function and one value for that function to act on
@@ -216,17 +262,6 @@ const insert = list => value => LIST(value)(list);
 const showAll = list => 'Linked List: [' + toArray(list).join(', ') + ']';
 
 const generate = list => num => num === 0 ? list : LIST(Math.ceil(Math.random() * 1000))(generate(list)(num - 1));
-
-//binary search tree
-
-const insertBST = tree => data => {
-    if (tree === false) {
-        return LIST(data)(false);
-    }
-    if (data > value(tree)) {
-
-    }
-}
 
 
 
