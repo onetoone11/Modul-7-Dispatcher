@@ -76,6 +76,8 @@ CPU.add(b);
 CPU.add(c);
 CPU.work(300);
 
+new Node2(new Process("test", 100, 5));
+
 class CPU2 {
     constructor() {
         this.head = null;
@@ -236,7 +238,12 @@ class CPU3 {
     }
 
     add(process) {
-
+        let t = new Node3(process, process.priority);
+        t.next = this.head;
+        if(this.length() > 0) {
+            this.head.prev = t;
+        }
+        this.head = t;
     }
 
     remove() {
@@ -252,30 +259,31 @@ class Dispatcher {
     constructor(tasks, workLoad) {
         this.workLoad = workLoad;
         this.tasks = tasks;
-        this.CPUs = [];
+        this.CPUs = [new CPU1(), new CPU2(), new CPU3()];
     }
 
     start() {
-        if(this.CPUs !==1)
-        this.CPUs = [new CPU1(), new CPU2, new CPU3];
-        for(let i = 0; i < 3; i++) {
-            for(let j = 0; j < this.tasks.length; j++) {
-                
+        if(this.CPUs.length === 3) {
+            for(let i = 0; i < 3; i++) {
+                for(let j = 0; j < this.tasks.length; j++) {
+                    this.CPUs[i].add(this.tasks[i]);
+                }
+                this.CPUs[i].work(this.workLoad);
             }
         }
     }
 
-    setWorkload() {
-
+    setWorkload(ms) {
+        this.workLoad = ms;
     }
 
-    addTasks() {
-
+    addTasks(tasks) {
+        this.tasks.push(tasks);
     }
 }
 
 
-function Scheduler() {
+function Scheduler(work) {
 
 }
 
