@@ -87,10 +87,14 @@ class CPU2 {
             // let t = new Node2(process);
             // t.next = this.head;
             this.head = new Node2(process);
+            this.head.next = this.head;
+            // addData(myChart2, this.head.name, this.head.remainingTime);
         }
         else if(this.length == 1){
             let t = this.head
             let temp = new Node2(process);
+
+            // addData(myChart2, temp.data.name, temp.data.remainingTime);
 
             t.next = temp;
             temp.next = this.head;
@@ -108,13 +112,15 @@ class CPU2 {
                 let temp = new Node2(process);
                 temp.next = head;
                 pos.next = temp;
-                addData(myChart2, temp.data.name, temp.data.remainingTime);
-                addData(myChart22, temp.data.name, temp.data.remainingTime);
+                // addData(myChart2, temp.data.name, temp.data.remainingTime);
+                // addData(myChart22, temp.data.name, temp.data.remainingTime);
             }
             else{
                 return makeCircle(pos.next, length-1, head);
             }
         }
+
+        // addData(myChart2, 'hello1', 1000);
 
         // length 
         this.length = this.length + 1;
@@ -157,37 +163,21 @@ class CPU2 {
 
         // Grafiskt
 
-        console.log('TempArray');
+        // removeAll(myChart2, 2);
+        // removeAll(myChart22, 2);
+
+        console.log(myChart2);
+
+        for(let i = 0; i < tempArray.length; i++){
+            // addData(myChart2, tempArray[i][0].name, tempArray[i][0].remainingTime);
+            editDataAtPos(myChart2, i, tempArray[i][0].remainingTime);
+            // addData(myChart22, tempArray[i][0].name, tempArray[i][0].remainingTime);
+            myChart2.update();
+            // myChart22.update();
+        }
+
+        console.log('tempArray');
         console.log(tempArray);
-
-        // CPU_data.CPU_1 = [];
-        // for(let i = 0; i < this.length; i++){
-        //     CPU_data.CPU_1.push(tempArray[i][0].remainingTime);
-        //     // myChar1.update();
-        // }
-
-        // // Labels
-        // let temp;
-        // if(this.length < 5){
-        //     temp = 5;
-        // }
-        // else{
-        //     temp = this.length
-        // }
-
-        // CPU_labels.CPU_1 = [];
-        // for(let j = 0; j < temp; j++){
-        //     CPU_labels.CPU_1.push(tempArray[j][0].name);
-            
-        // }
-
-        // myChar1.update();
-
-        addData(myChar1, 'hello1', 10);
-        addData(myChar11, 'hello1', 10);
-
-        // editDataAtPos(myChar1, 0, 'helooIgen');
-
         tempArray = [];
     }
 
@@ -244,17 +234,17 @@ class CPU2 {
     }
 }
 
-let cpu2 = new CPU2();
+// let cpu2 = new CPU2();
 let ab = new Process('hello1', 1000, 5);
 let bc = new Process('hello2', 2000, 5);
 let cd = new Process('hello3', 3000, 5);
 let de = new Process('hello4', 4000, 5);
 let ef = new Process('hello4', 5000, 5);
-cpu2.add(ab);
-cpu2.add(bc);
-cpu2.add(cd);
-cpu2.add(de);
-cpu2.add(ef);
+// cpu2.add(ab);
+// cpu2.add(bc);
+// cpu2.add(cd);
+// cpu2.add(de);
+// cpu2.add(ef);
 
 // cpu2.remove(2);
 
@@ -412,6 +402,10 @@ class Dispatcher {
         this.tasks.push(tasks);
     }
 }
+
+let cpu1 = new CPU1();
+let cpu2 = new CPU2();
+let cpu3 = new CPU3();
 
 
 function Scheduler(work, list) {

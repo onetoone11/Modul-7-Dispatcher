@@ -221,9 +221,22 @@ function removeDataWithLabel(chart, label) {//ta bort data med viss label
     }
 }
 
-function removeAll(chart) {
+function removeAll(chart, num) {
+
+    if(num == 1){
+        CPU_labels.CPU_1 = [];
+        CPU_data.CPU_1 = [];
+    }
+    else if(num == 2){
+        CPU_labels.CPU_2 = [];
+        CPU_data.CPU_2 = [];
+    }
+    else if(num == 3){
+        CPU_labels.CPU_3 = [];
+        CPU_data.CPU_3 = [];
+    }
     chart.data.labels = [];
-    chart.data.datasets.data = [];
+    chart.data.datasets[0].data = [];
     chart.update();
 }
 
