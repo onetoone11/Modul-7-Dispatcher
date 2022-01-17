@@ -14,6 +14,8 @@ function updateCharts() {
         element.data.datasets[0].data = CPU_data.CPU_3;
         element.update();
     });
+
+    updateText();
 }
 
 
@@ -450,6 +452,7 @@ class Dispatcher {
                 }
                 setInterval(Scheduler, 1000);
                 updateCharts();
+                updateText();
                 // this.CPUs = Scheduler(this.workLoad, this.CPUs);
             }
             this.tasks = [];
@@ -468,7 +471,7 @@ class Dispatcher {
 let dispatcher1 = new Dispatcher();
 
 function Scheduler(work, list) {
-    console.log("blablabla");
+    // console.log("blablabla");
 }
 
 
@@ -493,7 +496,8 @@ submitBtn.addEventListener("click", () => {
             dispatcher1.setWorkload(workload);
             dispatcher1.start();
             processList = [];
-            alert("success!");
+            // alert("success!");
+            updateText();
 
         }
     } else {
@@ -523,3 +527,47 @@ function makeProcesses(string, list) {
     arr = string.split("\n").map(element => element.split(" "));
     arr.map(element => list.push(new Process(element[0], Number(element[1]), Number(element[2]))));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// CPU Status
+
+// CPU 1
+
+    // Test 1
+    let work_list1 = document.querySelector('.work-list1');
+
+    function updateText(){
+        // alert(CPU.array[0]);
+        // console.log('här');
+        // console.log(CPU.array[0].name);
+
+        work_list1.innerHTML = '';
+    
+        for(let i = 0; i < CPU.array.length && i < 5; i++){
+            work_list1.innerHTML += `   <div class="row" style="padding-left: 12px; height: 25px;">
+                                    <div class="col-lg-6 work_name work1_name1">${CPU.array[i].name}</div>
+                                    <div class="col-lg-4 work_time work1_time1">${CPU.array[i].remainingTime}</div>
+                                    <div class="col-lg-2 work_prio work1_prio1">${CPU.array[i].priority}</div>
+                                </div>
+                                <hr class="c-orange">`;
+        }
+    
+        
+    }
