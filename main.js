@@ -221,6 +221,12 @@ function removeDataWithLabel(chart, label) {//ta bort data med viss label
     }
 }
 
+function removeAll(chart) {
+    chart.data.labels = [];
+    chart.data.datasets.data = [];
+    chart.update();
+}
+
 // Chart End
 
 
@@ -239,38 +245,46 @@ const FOREST = TREE;
 //f is a function which takes two arguments, one function and one value for that function to act on
 //
 const fix = (f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v))));
-
 const l1 = L(3)(L(4)(L(9)(L(5)(L(7)(false)))));
-
-
 const foldr = base => func => fix(f => list => list === false ? base : func(value(list))(f(next(list))));
-
 const concat = list1 => foldr(list1)(a => b => LIST(a)(b));
-
 const removeFront = list => num => num === 0 || list === false ? list : removeFront(next(list))(num - 1);
-
 const removeEnd = list => num => num === 0 || list === false ? false : LIST(value(list))(removeEnd(next(list))(num - 1));
-
 const createLinkedList = (...x) => x.length === 0 ? false : LIST(x[0])(createLinkedList(...x.slice(1)));
-
 const toArray = foldr([])(a => b => [a, ...b]);
-
 // necessary functions(length, deleteHead, deleteTail, insert, showAll, sort, generate)
-
 const length = foldr(0)(x => y => 1 + y);
-
 const deleteHead = next;
-
 const deleteTail = list => next(list) === false ? false : LIST(value(list))(deleteTail(next(list)));
-
 const insert = list => value => LIST(value)(list);
-
 const showAll = list => 'Linked List: [' + toArray(list).join(', ') + ']';
-
 const generate = list => num => num === 0 ? list : LIST(Math.ceil(Math.random() * 1000))(generate(list)(num - 1));
 
 
+const foldrList = func => base => fix(f => list => list === false ? base : func(value(list))(f(next(list))));
 
+// const foldrTree = func => base => fix(f => tree => {
+//     if(tree === false) {
+//         return base;
+//     }
+//     //leaf nodes are trees with empty forests
+
+//     return func(value(tree))(foldrList(base)(f)(next(tree)));
+// });
+
+// foldt(f)(z)([]) = z;
+// foldt(f)(z)([x]) = f(x)(z);
+// foldt(f)(z)(xs) = foldt(f)(z)(pairs(f)(xs));
+
+// foldr(f)(z)([])     = z
+// foldr(f)(z)(x:xs) = f(x)(foldr(f)(z)(xs))
+
+// If the list is empty, the result is the initial value z. 
+// If not, apply f to the first element and the result of folding the rest.
+
+
+
+/*
 class Node {
     constructor(data, next = null) {
         this.head = data;
@@ -369,7 +383,17 @@ class CircularLinkedList {
 // let l = new CircularLinkedList();
 
 
-
+var tree = {
+    value: 1,
+    forest: [
+        {
+            value: 2,
+            forest: []
+        },
+        {},
+        {},
+    ]
+}
 
 
 
@@ -401,3 +425,5 @@ showAll(l1)
 //     }
 //     console.log(temp.join(", "));
 // }
+
+*/

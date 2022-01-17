@@ -264,15 +264,42 @@ cpu2.add(ef);
 class CPU3 {
     constructor() {
         this.head = null;
+        this.length = 0;
     }
 
     add(process) {
-        let t = new Node3(process, process.priority);
-        t.next = this.head;
-        if(this.length() > 0) {
-            this.head.prev = t;
+
+        if(this.length == 0){
+            this.head = new Node2(process);
         }
-        this.head = t;
+        else if(this.length == 1){
+            let t = this.head
+            let temp = new Node2(process);
+
+            t.next = temp;
+            temp.next = this.head;
+
+            this.head = t;
+        }
+        else{
+            this.length = this.length + 1;
+            return makeCircle(this.head, this.length, this.head);
+        }
+
+        function makeCircle(pos, length, head){
+
+            if(length == 2){
+                let temp = new Node2(process);
+                temp.next = head;
+                pos.next = temp;
+            }
+            else{
+                return makeCircle(pos.next, length-1, head);
+            }
+        }
+
+        // length 
+        this.length = this.length + 1;
     }
 
     remove() {
@@ -280,7 +307,13 @@ class CPU3 {
     }
 
     work(ms) {
-
+        let list = this.head;
+        while(ms > 0) {
+            list.data.remainingTime -= 1;
+            list = list.next;
+            ms--;
+        }
+        return list;
     }
 }
 

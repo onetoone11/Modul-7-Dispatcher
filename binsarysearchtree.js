@@ -1,3 +1,4 @@
+
 class Node {
     constructor(data, left = null, right = null) {
         this.data = data;
@@ -5,6 +6,25 @@ class Node {
         this.right = right;
     }
 }
+
+const fix = (f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v))));
+// const foldr = base => func => fix(f => tree => {
+//     if(tree === null) {
+//         return base;
+//     }
+
+//     return func(tree.data)(f(tree.left))(f(tree.right));
+// });
+const foldrList = base => func => fix(f => list => list === false ? base : func(value(list))(f(next(list))));
+
+const foldrTree = base => func => fix(f => tree => {
+    if(tree === false) {
+        return base;
+    }
+    //leaf nodes are trees with empty forests
+
+    return func(value(tree))(foldrList(base)(f));
+});
 
 class BST {
     constructor() {
@@ -27,20 +47,37 @@ class BST {
     }
 
     length() {
-        const length2 = tree => {
-            if(tree === null) {
-                return 0;
-            } else {
-                return 1 + length2(tree.right) + length2(tree.left);
-            }
-        }
+        // const length2 = tree => {
+        //     if(tree === null) {
+        //         return 0;
+        //     } else {
+        //         return 1 + length2(tree.right) + length2(tree.left);
+        //     }
+        // }
+        // return length2(this.head);
+        const length2 = tree => tree === null ? 0 : 1 + length2(tree.right) + length2(tree.left);
         return length2(this.head);
+    }
+
+    height() {
+        const depth2 = root => root === null ? 0 : Math.max(depth2(root.left), depth2(root.right)) + 1;
+        return depth2(this.head);
     }
 
     generate(num) {
         for(let i = 0; i < num; i++) {
             this.insert(Math.ceil(Math.random()*1000));
         }
+    }
+
+    balance() {
+        const bal2 = tree => {
+            if(tree === null) {
+                return [];
+            }
+            return [tree.data,...bal2(tree.right)];
+        }
+        return bal2(this.head);
     }
 
     sort() {
@@ -51,7 +88,7 @@ class BST {
 
 let list = new BST();
 
-
+// const TREE = a => b => c => f => f(a)(b)(c);
 
 // import chart from 'chart.js';
 // var ctx = document.getElementById('myChart');
