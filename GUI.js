@@ -49,9 +49,6 @@
             }
         }
 
-        // console.log('hdbjlaskndlkwsjfei<öikadsnjdfklöasjfu9oskfd');
-        // console.log(cpu2Array);
-
         work_list1.innerHTML = '';
     
         for(let i = 0; i < CPU.array.length && i < 5; i++){
@@ -88,6 +85,8 @@
                                         <hr class="c-orange">`;
         } 
 
+        
+
         // Cpu 1
 
         if(CPU.array.length > 0){
@@ -107,7 +106,7 @@
 
         // Cpu 2
 
-        if(CPU.array.length > 0){
+        if(cpu2.length > 0){
             status2.innerHTML = '';
             status2.innerHTML = 'Busy';
             status2.style.color = '#FC4C01';
@@ -124,7 +123,7 @@
 
         // Cpu 3
 
-        if(CPU.array.length > 0){
+        if(cpu3.length > 0){
             status3.innerHTML = '';
             status3.innerHTML = 'Busy';
             status3.style.color = '#FC4C01';
