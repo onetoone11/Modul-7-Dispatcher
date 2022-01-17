@@ -30,13 +30,13 @@ function bottomFunction() {
 
 // Chart Start
 let CPU_data = {//info som delas mellan charts som tillhör samma CPU. 
-    CPU_1: [1,2,3,4,5],
+    CPU_1: [],
     CPU_2: [],
     CPU_3: []
 }
 
 let CPU_labels = {
-    CPU_1: ['jfdkslkdsa', 'dklasdlaldsa', 'kdsaldsla', 'dölaldsaöldsa', ''],
+    CPU_1: [],
     CPU_2: [],
     CPU_3: []
 }
@@ -90,10 +90,10 @@ let myChart2 = new Chart(document.getElementById('myChart2'), {
 let myChart3 = new Chart(document.getElementById('myChart3'), {
     type: 'bar',
     data: {
-        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        labels: CPU_labels.CPU_3,
         datasets: [{
             label: 'Remaining time',
-            data: [50, 890, 220, 30,],
+            data: CPU_data.CPU_3,
             backgroundColor: [
                 'rgb(247, 141, 11)'
             ],
@@ -117,7 +117,7 @@ let myChart3 = new Chart(document.getElementById('myChart3'), {
 let myChar11 = new Chart(document.getElementById('myChart11'), {
     type: 'pie',
     data: {
-        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        labels: CPU_labels.CPU_1,
         datasets: [{
             label: 'Remaining time',
             data: CPU_data.CPU_1,
@@ -139,10 +139,10 @@ let myChar11 = new Chart(document.getElementById('myChart11'), {
 let myChart22 = new Chart(document.getElementById('myChart22'), {
     type: 'pie',
     data: {
-        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        labels: CPU_labels.CPU_2,
         datasets: [{
             label: 'Remaining time',
-            data: [50, 890, 220, 30,],
+            data: CPU_data.CPU_2,
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(255, 159, 64)',
@@ -161,10 +161,10 @@ let myChart22 = new Chart(document.getElementById('myChart22'), {
 let myChart33 = new Chart(document.getElementById('myChart33'), {
     type: 'pie',
     data: {
-        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        labels: CPU_labels.CPU_3,
         datasets: [{
             label: 'Remaining time',
-            data: [50, 890, 220, 30,],
+            data: CPU_data.CPU_3,
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(255, 159, 64)',
