@@ -30,7 +30,13 @@ function bottomFunction() {
 
 // Chart Start
 let CPU_data = {//info som delas mellan charts som tillhör samma CPU. 
-    CPU_1: [],
+    CPU_1: [1,2,3,4,5],
+    CPU_2: [],
+    CPU_3: []
+}
+
+let CPU_labels = {
+    CPU_1: ['jfdkslkdsa', 'dklasdlaldsa', 'kdsaldsla', 'dölaldsaöldsa', ''],
     CPU_2: [],
     CPU_3: []
 }
@@ -38,10 +44,10 @@ let CPU_data = {//info som delas mellan charts som tillhör samma CPU.
 let myChar1 = new Chart(document.getElementById('myChart1'), {
     type: 'bar',
     data: {
-        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        labels: CPU_labels.CPU_1,
         datasets: [{
             label: 'Remaining time',
-            data: [50, 890, 220, 30,],
+            data: CPU_data.CPU_1,
             backgroundColor: [
                 'rgb(247, 141, 11)'
             ],
@@ -61,10 +67,10 @@ let myChar1 = new Chart(document.getElementById('myChart1'), {
 let myChart2 = new Chart(document.getElementById('myChart2'), {
     type: 'bar',
     data: {
-        labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
+        labels: CPU_labels.CPU_2,
         datasets: [{
             label: 'Remaining time',
-            data: [50, 890, 220, 30,],
+            data: CPU_data.CPU_2,
             backgroundColor: [
                 'rgb(247, 141, 11)'
             ],
@@ -114,7 +120,7 @@ let myChar11 = new Chart(document.getElementById('myChart11'), {
         labels: ['Delete data', 'Copy RAM', 'Print text', 'Input Handle', ''],
         datasets: [{
             label: 'Remaining time',
-            data: [50, 890, 220, 30,],
+            data: CPU_data.CPU_1,
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(255, 159, 64)',
