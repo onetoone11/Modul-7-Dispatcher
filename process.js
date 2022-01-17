@@ -1,3 +1,22 @@
+function updateCharts() {
+    chartArray[0].map(element => {
+        element.data.labels = CPU_labels.CPU_1;
+        element.data.datasets[0].data = CPU_data.CPU_1;
+        element.update();
+    });
+    chartArray[1].map(element => {
+        element.data.labels = CPU_labels.CPU_2;
+        element.data.datasets[0].data = CPU_data.CPU_2;
+        element.update();
+    });
+    chartArray[2].map(element => {
+        element.data.labels = CPU_labels.CPU_3;
+        element.data.datasets[0].data = CPU_data.CPU_3;
+        element.update();
+    });
+}
+
+
 class Process {
     constructor(name, execTime, priority) {
         this.name = name;
@@ -30,8 +49,16 @@ class CPU1 {
         this.array = [];
     }
 
+    update() {
+        CPU_data.CPU_1 = this.array.map(element => element.remainingTime);
+        CPU_labels.CPU_1 = this.array.map(element => element.name);
+
+        updateCharts();
+    }
+
     add(data) { //enqueue
         this.array.push(data);
+        this.update();
     }
 
     remove() { //dequeue(remove head, return head data)
@@ -63,6 +90,7 @@ class CPU1 {
             // console.log(ms);
         }, 10);
         this.array = temp;
+        this.update();
     }
 }
 
@@ -70,15 +98,28 @@ let CPU = new CPU1();
 let a = new Process("hello", 100, 5);
 let b = new Process("hell4", 50, 3);
 let c = new Process("hhhhhhh", 50, 3);
-CPU.add(a);
-CPU.add(b);
-CPU.add(c);
+// CPU.add(a);
+// CPU.add(b);
+// CPU.add(c);
 
 let tempArray = [];
 class CPU2 {
     constructor() {
         this.head = null;
         this.length = 0;
+    }
+
+    update() {
+        const add = length => list => {
+            if(length === 0) {
+                return [];
+            }
+            return [[list.data.remainingTime, list.data.name],...add(length-1)(list.next)];
+        }
+        CPU_data.CPU_2 = add(this.length)(this.head).map(element => element[0]);
+        CPU_labels.CPU_2 = add(this.length)(this.head).map(element => element[1]);
+
+        updateCharts();
     }
 
     add(process) {
@@ -89,6 +130,7 @@ class CPU2 {
             this.head = new Node2(process);
             this.head.next = this.head;
             // addData(myChart2, this.head.name, this.head.remainingTime);
+            this.length = this.length + 1;
         }
         else if(this.length == 1){
             let t = this.head
@@ -100,10 +142,11 @@ class CPU2 {
             temp.next = this.head;
 
             this.head = t;
+            this.length = this.length + 1;
         }
         else{
             this.length = this.length + 1;
-            return makeCircle(this.head, this.length, this.head);
+            makeCircle(this.head, this.length, this.head);
         }
 
         function makeCircle(pos, length, head){
@@ -112,6 +155,7 @@ class CPU2 {
                 let temp = new Node2(process);
                 temp.next = head;
                 pos.next = temp;
+                return;
                 // addData(myChart2, temp.data.name, temp.data.remainingTime);
                 // addData(myChart22, temp.data.name, temp.data.remainingTime);
             }
@@ -123,7 +167,8 @@ class CPU2 {
         // addData(myChart2, 'hello1', 1000);
 
         // length 
-        this.length = this.length + 1;
+        console.log("knjdjnsd")
+        this.update();
     }
 
     remove() {
@@ -181,11 +226,6 @@ class CPU2 {
         tempArray = [];
     }
 
-    length() {
-        const length2 = list => list === false ? 0 : 1 + length2(list.next);
-        return length2(this.head);
-    }
-
     work(ms) {
 
         if(ms > 1000){
@@ -231,10 +271,11 @@ class CPU2 {
         // console.log('remove');
         tot = 0;
         this.remove();
+        this.update();
     }
 }
 
-// let cpu2 = new CPU2();
+let cpu2 = new CPU2();
 let ab = new Process('hello1', 1000, 5);
 let bc = new Process('hello2', 2000, 5);
 let cd = new Process('hello3', 3000, 5);
@@ -256,12 +297,27 @@ class CPU3 {
         this.length = 0;
     }
 
+    update() {
+        const add = length => list => {
+            if(length === 0) {
+                return [];
+            }
+            return [[list.data.remainingTime, list.data.name],...add(length-1)(list.next)];
+        }
+        console.log(add(this.length)(this.head).map(element => element[1]))
+        CPU_data.CPU_3 = add(this.length)(this.head).map(element => element[0]);
+        CPU_labels.CPU_3 = add(this.length)(this.head).map(element => element[1]);
+
+        updateCharts();
+    }
+
     add(process) {
 
         if(this.length == 0){
             this.head = new Node3(process);
             this.head.next = this.head;
             this.head.prev = this.head;
+            this.length = this.length + 1;
         }
         else if(this.length == 1){
             let t = this.head
@@ -272,10 +328,11 @@ class CPU3 {
             temp.prev = this.head;
 
             this.head = t;
+            this.length = this.length + 1;
         }
         else{
             this.length = this.length + 1;
-            return makeCircle(this.head, this.length, this.head);
+            makeCircle(this.head, this.length, this.head);
         }
 
         function makeCircle(pos, length, head){
@@ -292,8 +349,8 @@ class CPU3 {
             }
         }
 
-        // length 
-        this.length = this.length + 1;
+        console.log("test");
+        this.update();
     }
 
     remove() {
@@ -365,6 +422,7 @@ class CPU3 {
         }
         console.log(temp);
         this.remove();
+        // this.update();
 
     }
 }
@@ -377,20 +435,24 @@ let cpu3 = new CPU3();
 // cpu3.add(ef);
 
 class Dispatcher {
-    constructor(tasks, workLoad) {
+    constructor(tasks = [], workLoad = null) {
         this.workLoad = workLoad;
         this.tasks = tasks;
-        this.CPUs = [new CPU1(), new CPU2(), new CPU3()];
+        this.CPUs = [CPU, cpu2, cpu3];
     }
 
     start() {
         if(this.CPUs.length === 3) {
             for(let i = 0; i < 3; i++) {
                 for(let j = 0; j < this.tasks.length; j++) {
-                    this.CPUs[i].add(this.tasks[i]);
+                    console.log(this.tasks[j]);
+                    this.CPUs[i].add(this.tasks[j]);
                 }
-                this.CPUs = Scheduler(this.workLoad, this.CPUs);
+                setInterval(Scheduler, 1000);
+                updateCharts();
+                // this.CPUs = Scheduler(this.workLoad, this.CPUs);
             }
+            this.tasks = [];
         }
     }
 
@@ -403,11 +465,61 @@ class Dispatcher {
     }
 }
 
-let cpu1 = new CPU1();
-let cpu2 = new CPU2();
-let cpu3 = new CPU3();
-
+let dispatcher1 = new Dispatcher();
 
 function Scheduler(work, list) {
-    return list.map(e => e.work(work));
+    console.log("blablabla");
+}
+
+
+// Parser.js
+
+let commandInput = document.getElementById("commandInput");
+let workLoadInput = document.getElementById("workLoad");
+let submitBtn = document.getElementById("submitToParser");
+
+let commands;
+let workload;
+
+let processList = [];
+
+submitBtn.addEventListener("click", () => {
+    commands = commandInput.value;
+    workload = Number(workLoadInput.value);
+    if(!isNaN(workload) && workload !== "") {
+        if(checkValidity(commands)) {
+            makeProcesses(commands, processList);
+            dispatcher1.addTasks(...processList);
+            dispatcher1.setWorkload(workload);
+            dispatcher1.start();
+            processList = [];
+            alert("success!");
+
+        }
+    } else {
+        alert("workload must be a number!");
+    }
+
+    commandInput.value = "";
+    workLoadInput.value = "";
+});
+
+function checkValidity(string) {
+    let temp = string.split("\n").map(element => element.split(" "));
+    if(temp.some(element => element.length !== 3)) {
+        alert("faulty input");
+        return false;
+    } else {
+        if(temp.every(element => !isNaN(element[1]) && !isNaN(element[2]))) {
+            return true;
+        } else {
+            alert("the execution time and priority must be numbers!");
+            return false;
+        }
+    }
+}
+
+function makeProcesses(string, list) {
+    arr = string.split("\n").map(element => element.split(" "));
+    arr.map(element => list.push(new Process(element[0], Number(element[1]), Number(element[2]))));
 }

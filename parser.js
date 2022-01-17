@@ -1,11 +1,11 @@
-class Process {
-    constructor(name, execTime, priority) {
-        this.name = name;
-        this.execTime = execTime;
-        this.priority = priority;
-        this.remainingTime = this.execTime;
-    }
-}
+// class Process {
+//     constructor(name, execTime, priority) {
+//         this.name = name;
+//         this.execTime = execTime;
+//         this.priority = priority;
+//         this.remainingTime = this.execTime;
+//     }
+// }
 
 let commandInput = document.getElementById("commandInput");
 let workLoadInput = document.getElementById("workLoad");
@@ -18,7 +18,7 @@ let processList = [];
 
 submitBtn.addEventListener("click", () => {
     commands = commandInput.value;
-    workload = workLoadInput.value;
+    workload = Number(workLoadInput.value);
     if(!isNaN(workload) && workload !== "") {
         if(checkValidity(commands)) {
             makeProcesses(commands, processList);
@@ -52,3 +52,5 @@ function makeProcesses(string, list) {
     arr = string.split("\n").map(element => element.split(" "));
     arr.map(element => list.push(new Process(element[0], Number(element[1]), Number(element[2]))));
 }
+
+let dispatcher1 = new Dispatcher();

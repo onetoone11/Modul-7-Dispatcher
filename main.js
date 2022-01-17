@@ -180,6 +180,8 @@ let myChart33 = new Chart(document.getElementById('myChart33'), {
     },
 });
 
+let chartArray = [[myChar1, myChar11],[myChart2, myChart22],[myChart3, myChart33]];
+
 
 //funktioner för att redigera värdena i Charts
 function editDataAtPos(chart, pos, data) {//redigerar datavärde på visst index
