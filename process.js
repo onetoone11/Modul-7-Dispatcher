@@ -74,8 +74,8 @@ let c = new Process("hhhhhhh", 50, 3);
 CPU.add(a);
 CPU.add(b);
 CPU.add(c);
-CPU.work(300);
 
+let tempArray = [];
 class CPU2 {
     constructor() {
         this.head = null;
@@ -109,6 +109,8 @@ class CPU2 {
                 let temp = new Node2(process);
                 temp.next = head;
                 pos.next = temp;
+                addData(myChart2, temp.data.name, temp.data.remainingTime);
+                addData(myChart22, temp.data.name, temp.data.remainingTime);
             }
             else{
                 return makeCircle(pos.next, length-1, head);
@@ -119,82 +121,75 @@ class CPU2 {
         this.length = this.length + 1;
     }
 
-    remove(pos) {
+    remove() {
 
-        // this.length = this.length - 1;
+        function removeZero(list, length){
 
-        let temp = [];
-
-        // let length = this.length; 
-
-        saveList(pos, this.head, this.length);
-
-        function saveList(pos, head, length){
-            pos--;
-            length--;
-            if(pos == 0){
-                return saveList(pos, head.next, length);
+            if(length == 0){
+                return;
             }
-            else{
-                // temp[temp.length] = [head.data.name, head.data.remainingTime, head.data.priority];
-                return saveList(pos, head.next, length);
-            }
-        }
 
-        console.log('fungerar denna consolen?');
-        
-        function posRemove(pos, list){
-
-
-
-            pos--;
-            console.log('pos: ' + pos);
-
-            if(pos == 0){
-                console.log('list');
-                console.log(list);
-                console.log('list.next');
-                console.log(list.next);
-                list = list.next;
-                console.log('list2');
-                console.log(list);
-                
-                // return list;
-                // list = 0;
-                // return;
+            if(list.data.remainingTime == 0){
+                console.log('dhjkashdkjsasdk');
+                return removeZero(list.next, length-1);
                 
             }
             else{
-                // pos = pos - 1;
-                return posRemove(pos, list.next);
+                console.log('2');
+                tempArray[tempArray.length] = [list.data];
+                return removeZero(list.next, length-1);
             }
-
         }
 
-        // return posRemove(pos, this.head);
-        // let t = this.head.data;
-        // if(this.head !== null) {
-        //     this.head = this.head.next;
+        removeZero(this.head, this.length);
+
+        if(tempArray == []){
+            return
+        }
+        else{
+            this.head = null;
+            this.length = 0;
+            for(let i = 0; i < tempArray.length; i++){
+                this.add(...tempArray[i]);
+            }
+
+            // tempArray = [];
+        }
+
+        // Grafiskt
+
+        console.log('TempArray');
+        console.log(tempArray);
+
+        // CPU_data.CPU_1 = [];
+        // for(let i = 0; i < this.length; i++){
+        //     CPU_data.CPU_1.push(tempArray[i][0].remainingTime);
+        //     // myChar1.update();
         // }
 
-        // if(this.length > 2){
-        //     return hmm(this.head, this.length, this.head, pos)
+        // // Labels
+        // let temp;
+        // if(this.length < 5){
+        //     temp = 5;
         // }
         // else{
-        //     console.log('hmm');
+        //     temp = this.length
         // }
 
-        // function hmm(list, pos){
+        // CPU_labels.CPU_1 = [];
+        // for(let j = 0; j < temp; j++){
+        //     CPU_labels.CPU_1.push(tempArray[j][0].name);
             
-        //     if(pos == 2){
-        //         console.log(list);
-        //         list.next = list;
-        //     }
-        //     else{
-        //         return hmm(list.next, pos-1);
-        //     }
-
         // }
+
+        // myChar1.update();
+
+        addData(myChar1, 'hello1', 10);
+        addData(myChar11, 'hello1', 10);
+
+        // editDataAtPos(myChar1, 0, 'helooIgen');
+
+        tempArray = [];
     }
 
     length() {
@@ -203,67 +198,59 @@ class CPU2 {
     }
 
     work(ms) {
-        // ms = ms/this.length;
-        
-        // var timer = setInterval(work2,1);
 
-        function work2(list, ms){
-            if(ms == 0){
+        if(ms > 1000){
+            return 'Can not work that fast';
+        }
+
+        let tot = 0;
+
+        function numMs(list, length){
+            if(length == 0){
                 return;
             }
             else{
-                // ms--; 
-                
+                tot = tot + list.data.remainingTime;
+                return numMs(list.next, length-1);
+            }
+        }
+
+        numMs(this.head, this.length);
+        console.log(tot);
+        console.log('tot');
+
+        function work2(list, ms, tot){
+
+            if(ms == 0 || tot < 1){
+                return;
+            }
+            else{
                 if(list.data.remainingTime == 0){
-                    // remove
-                    // list.data.remainingTime = list.data.remainingTime - 1;
-                    work2(list.next, ms);
+                    work2(list.next, ms, tot);
                 }
                 else{
                     list.data.remainingTime = list.data.remainingTime - 1;
-                    work2(list.next, ms-1); 
+                    tot = tot - 1;
+                    work2(list.next, ms-1, tot); 
                 }
                 
                 
             }
         }
-        return work2(this.head, ms);
-        console.log('finns denna?');
-        
-        // function work2(list, ms, length) {
-        //     if(length == 0){
-        //         console.log('klart');
-        //     }
-        //     else{
-        //         if(list.data.remainingTime > ms){
-        //             list.data.remainingTime = list.data.remainingTime - ms;
-        //         }
-        //         else if(list.data.remainingTime == ms){
-        //             // Remove, men inget över
-        //             list.data.remainingTime = list.data.remainingTime - ms;
+        work2(this.head, ms, tot);
 
-        //             // remove()
-        //         }
-        //         else{
-        //             // Remove, men kör en work igen.
-        //             list.data.remainingTime = list.data.remainingTime - ms;
-        //             let newMs = list.data.remainingTime * (-1); 
-        //             // detta måste fixas
-        //         }
-                
-        //         return work2(list.next, ms, length-1);
-        //     }
-        // }
-
+        // console.log('remove');
+        tot = 0;
+        this.remove();
     }
 }
 
 let cpu2 = new CPU2();
-let ab = new Process('hello1', 2, 5);
-let bc = new Process('hello2', 6, 5);
-let cd = new Process('hello3', 7, 5);
-let de = new Process('hello4', 8, 5);
-let ef = new Process('hello4', 9, 5);
+let ab = new Process('hello1', 1000, 5);
+let bc = new Process('hello2', 2000, 5);
+let cd = new Process('hello3', 3000, 5);
+let de = new Process('hello4', 4000, 5);
+let ef = new Process('hello4', 5000, 5);
 cpu2.add(ab);
 cpu2.add(bc);
 cpu2.add(cd);
