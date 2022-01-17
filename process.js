@@ -18,9 +18,8 @@ class Node2 {
 }
 
 class Node3 {
-    constructor(data, priority=0, prev=null, next=null) {
+    constructor(data, prev=null, next=null) {
         this.data = data;
-        this.priority = priority;
         this.prev = prev;
         this.next = next;
     }
@@ -270,14 +269,17 @@ class CPU3 {
     add(process) {
 
         if(this.length == 0){
-            this.head = new Node2(process);
+            this.head = new Node3(process);
+            this.head.next = this.head;
+            this.head.prev = this.head;
         }
         else if(this.length == 1){
             let t = this.head
-            let temp = new Node2(process);
+            let temp = new Node3(process);
 
             t.next = temp;
             temp.next = this.head;
+            temp.prev = this.head;
 
             this.head = t;
         }
@@ -289,9 +291,11 @@ class CPU3 {
         function makeCircle(pos, length, head){
 
             if(length == 2){
-                let temp = new Node2(process);
+                let temp = new Node3(process);
                 temp.next = head;
+                temp.prev = pos;
                 pos.next = temp;
+                head.prev = temp;
             }
             else{
                 return makeCircle(pos.next, length-1, head);
@@ -304,18 +308,83 @@ class CPU3 {
 
     remove() {
 
+        function removeZero(list, length){
+
+            if(length == 0){
+                return;
+            }
+
+            if(list.data.remainingTime < 1){
+                console.log('dhjkashdkjsasdk');
+                return removeZero(list.next, length-1);
+                
+            }
+            else{
+                console.log('2');
+                tempArray[tempArray.length] = [list.data];
+                return removeZero(list.next, length-1);
+            }
+        }
+
+        removeZero(this.head, this.length);
+
+        if(tempArray == []){
+            return
+        }
+        else{
+            this.head = null;
+            this.length = 0;
+            for(let i = 0; i < tempArray.length; i++){
+                this.add(...tempArray[i]);
+            }
+
+            // tempArray = [];
+        }
+
+        tempArray = [];
     }
 
     work(ms) {
-        let list = this.head;
-        while(ms > 0) {
-            list.data.remainingTime -= 1;
-            list = list.next;
-            ms--;
+        // let list = this.head;
+        // while(ms > 0) {
+        //     list.data.remainingTime -= list.data.priority;
+        //     list = list.next;
+        //     ms = ms - list.data.priority;
+        // }
+        // return list;
+        let temp = 0;
+
+        tot(this.head, this.length);
+        function tot(list, length) {
+            if(length === 0) {
+                return;
+            } else {
+                temp += (list.data.priority);
+                return tot(list.next,length-1);
+            }
         }
-        return list;
+        pos(this.head, this.length);
+
+        function pos(list, length) {
+            if(length === 0) {
+                return;
+            } else {
+                list.data.remainingTime -= Math.round(list.data.priority*ms/temp);
+                return pos(list.next, length-1);
+            }
+        }
+        console.log(temp);
+        this.remove();
+
     }
 }
+
+let cpu3 = new CPU3();
+// cpu3.add(ab);
+// cpu3.add(bc);
+// cpu3.add(cd);
+// cpu3.add(de);
+// cpu3.add(ef);
 
 class Dispatcher {
     constructor(tasks, workLoad) {
@@ -330,7 +399,7 @@ class Dispatcher {
                 for(let j = 0; j < this.tasks.length; j++) {
                     this.CPUs[i].add(this.tasks[i]);
                 }
-                this.CPUs[i].work(this.workLoad);
+                this.CPUs = Scheduler(this.workLoad, this.CPUs);
             }
         }
     }
@@ -345,6 +414,6 @@ class Dispatcher {
 }
 
 
-function Scheduler(work) {
-
+function Scheduler(work, list) {
+    return list.map(e => e.work(work));
 }
