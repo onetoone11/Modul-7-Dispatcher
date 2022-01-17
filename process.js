@@ -69,28 +69,37 @@ class CPU1 {
 
     work(ms) {
         let temp = this.array;
-        var timer = setInterval(function work2() {
-            if(temp.length !== 0) {
-                if(ms > 0) {
-                    if(temp[0].remainingTime <= 1) {
-                        console.log(`finished with ${temp[0].name}`);
-                        temp.shift();
-                    } else {
-                        temp[0].remainingTime -= 1;
-                    }
-                } else {
-                    clearInterval(timer);
-                    console.log('Time alotted has run out');
-                    return;
-                }
+        // var timer = setInterval(function work2() {
+        //     if(temp.length !== 0) {
+        //         if(ms > 0) {
+        //             if(temp[0].remainingTime <= 1) {
+        //                 console.log(`finished with ${temp[0].name}`);
+        //                 temp.shift();
+        //             } else {
+        //                 temp[0].remainingTime -= 1;
+        //             }
+        //         } else {
+        //             clearInterval(timer);
+        //             console.log('Time alotted has run out');
+        //             return;
+        //         }
+        //     } else {
+        //         clearInterval(timer);
+        //         console.log('No tasks left!');
+        //         return;
+        //     }
+        //     ms--;
+        //     // console.log(ms);
+        // }, 10);
+        while(ms > 0) {
+            if(temp[0].remainingTime <= 1) {
+                console.log(`finished with ${temp[0].name}`);
+                temp.shift();
             } else {
-                clearInterval(timer);
-                console.log('No tasks left!');
-                return;
+                temp[0].remainingTime -= 1;
             }
             ms--;
-            // console.log(ms);
-        }, 10);
+        }
         this.array = temp;
         this.update();
     }
@@ -529,45 +538,3 @@ function makeProcesses(string, list) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// CPU Status
-
-// CPU 1
-
-    // Test 1
-    let work_list1 = document.querySelector('.work-list1');
-
-    function updateText(){
-        // alert(CPU.array[0]);
-        // console.log('här');
-        // console.log(CPU.array[0].name);
-
-        work_list1.innerHTML = '';
-    
-        for(let i = 0; i < CPU.array.length && i < 5; i++){
-            work_list1.innerHTML += `   <div class="row" style="padding-left: 12px; height: 25px;">
-                                    <div class="col-lg-6 work_name work1_name1">${CPU.array[i].name}</div>
-                                    <div class="col-lg-4 work_time work1_time1">${CPU.array[i].remainingTime}</div>
-                                    <div class="col-lg-2 work_prio work1_prio1">${CPU.array[i].priority}</div>
-                                </div>
-                                <hr class="c-orange">`;
-        }
-    
-        
-    }
