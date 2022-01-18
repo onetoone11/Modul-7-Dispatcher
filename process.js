@@ -456,7 +456,7 @@ class Dispatcher {
         if(this.CPUs.length === 3) {
             for(let i = 0; i < 3; i++) {
                 for(let j = 0; j < this.tasks.length; j++) {
-                    this.CPUs[i].add(this.tasks[j]);
+                    this.CPUs[i].add(Object.assign(Object.create(Object.getPrototypeOf(this.tasks[j])), this.tasks[j]));
                 }
                 setInterval(Scheduler, 1000);
                 updateCharts();
