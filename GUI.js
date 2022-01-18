@@ -18,11 +18,6 @@
 
     function updateText(){
 
-        // console.log('cpu img');
-        // console.log(cpu_img1.val);
-        // console.log('status');
-        // console.log(status1);
-
         let cpu2Array = [];
         cpu2ToArray(cpu2.head, cpu2.length);
 
@@ -63,7 +58,6 @@
         work_list2.innerHTML = '';
 
         for(let i = 0; i < cpu2.length && i < 5; i++){
-            // console.log('22222222222222222222');
             work_list2.innerHTML += `   <div class="row" style="padding-left: 12px; height: 25px;">
                                             <div class="col-lg-6 work_name work2_name1">${cpu2Array[i].name}</div>
                                             <div class="col-lg-4 work_time work2_time1">${cpu2Array[i].remainingTime}</div>
@@ -75,8 +69,6 @@
         work_list3.innerHTML = '';
 
         for(let i = 0; i < cpu3.length && i < 5; i++){
-            // console.log('3333333333333333');
-
             work_list3.innerHTML += `   <div class="row" style="padding-left: 12px; height: 25px;">
                                             <div class="col-lg-6 work_name work2_name1">${cpu3Array[i].name}</div>
                                             <div class="col-lg-4 work_time work2_time1">${cpu3Array[i].remainingTime}</div>
@@ -137,8 +129,5 @@
 
             cpu_img3.src = 'media/cpuGreen.png';
         }
-
-
-
 
     }
