@@ -67,28 +67,37 @@ class CPU1 {
 
     work(ms) {
         let temp = this.array;
-        var timer = setInterval(function work2() {
-            if(temp.length !== 0) {
-                if(ms > 0) {
-                    if(temp[0].remainingTime <= 1) {
-                        console.log(`finished with ${temp[0].name}`);
-                        temp.shift();
-                    } else {
-                        temp[0].remainingTime -= 1;
-                    }
-                } else {
-                    clearInterval(timer);
-                    console.log('Time alotted has run out');
-                    return;
-                }
+        // var timer = setInterval(function work2() {
+        //     if(temp.length !== 0) {
+        //         if(ms > 0) {
+        //             if(temp[0].remainingTime <= 1) {
+        //                 console.log(`finished with ${temp[0].name}`);
+        //                 temp.shift();
+        //             } else {
+        //                 temp[0].remainingTime -= 1;
+        //             }
+        //         } else {
+        //             clearInterval(timer);
+        //             console.log('Time alotted has run out');
+        //             return;
+        //         }
+        //     } else {
+        //         clearInterval(timer);
+        //         console.log('No tasks left!');
+        //         return;
+        //     }
+        //     ms--;
+        //     // console.log(ms);
+        // }, 10);
+        while(ms > 0) {
+            if(temp[0].remainingTime <= 1) {
+                console.log(`finished with ${temp[0].name}`);
+                temp.shift();
             } else {
-                clearInterval(timer);
-                console.log('No tasks left!');
-                return;
+                temp[0].remainingTime -= 1;
             }
             ms--;
-            // console.log(ms);
-        }, 10);
+        }
         this.array = temp;
         this.update();
     }
@@ -445,7 +454,6 @@ class Dispatcher {
         if(this.CPUs.length === 3) {
             for(let i = 0; i < 3; i++) {
                 for(let j = 0; j < this.tasks.length; j++) {
-                    console.log(this.tasks[j]);
                     this.CPUs[i].add(this.tasks[j]);
                 }
                 setInterval(Scheduler, 1000);
@@ -460,8 +468,8 @@ class Dispatcher {
         this.workLoad = ms;
     }
 
-    addTasks(tasks) {
-        this.tasks.push(tasks);
+    addTasks(...tasks) {
+        this.tasks.push(...tasks);
     }
 }
 
