@@ -91,8 +91,8 @@ class CPU1 {
         //     ms--;
         //     // console.log(ms);
         // }, 10);
-        while(ms > 0) {
-            if(temp[0].remainingTime <= 1) {
+        while(ms > 0 && this.array.length > 0) {
+            if(temp[0].remainingTime <= 0) {
                 console.log(`finished with ${temp[0].name}`);
                 temp.shift();
             } else {
@@ -433,7 +433,7 @@ class CPU3 {
         }
         console.log(temp);
         this.remove();
-        // this.update();
+        this.update();
 
     }
 }
@@ -458,7 +458,6 @@ class Dispatcher {
                 for(let j = 0; j < this.tasks.length; j++) {
                     this.CPUs[i].add(Object.assign(Object.create(Object.getPrototypeOf(this.tasks[j])), this.tasks[j]));
                 }
-                setInterval(Scheduler, 1000);
                 updateCharts();
                 updateText();
                 // this.CPUs = Scheduler(this.workLoad, this.CPUs);
@@ -478,10 +477,6 @@ class Dispatcher {
 
 let dispatcher1 = new Dispatcher();
 
-function Scheduler(work, list) {
-    // console.log("blablabla");
-}
-
 
 // Parser.js
 
@@ -492,32 +487,37 @@ let submitBtn = document.getElementById("submitToParser");
 let commands;
 let workload;
 
+let workload2 = null;
+
 let processList = [];
 
 submitBtn.addEventListener("click", () => {
     commands = commandInput.value;
     workload = Number(workLoadInput.value);
-    if(!isNaN(workload) && workload !== "") {
-        if(checkValidity(commands)) {
-            makeProcesses(commands, processList);
-            dispatcher1.addTasks(...processList);
-            dispatcher1.setWorkload(workload);
-            dispatcher1.start();
-            processList = [];
-            // alert("success!");
-            updateText();
-
-        }
+    if(commands == "" && !isNaN(workload) && workload !== "") {
+        workload = Number(workLoadInput.value);
     } else {
-        alert("workload must be a number!");
-    }
+        if(!isNaN(workload) && workload !== "") {
+            if(checkValidity(commands)) {
+                makeProcesses(commands, processList);
+                dispatcher1.addTasks(...processList);
+                dispatcher1.setWorkload(workload);
+                dispatcher1.start();
+                processList = [];
+                // alert("success!");
+                updateText();
+                setInterval(Scheduler, 100);
+    
+            }
+        }
+    } 
 
     commandInput.value = "";
     workLoadInput.value = "";
 });
 
 function checkValidity(string) {
-    let temp = string.split("\n").map(element => element.split(" "));
+    let temp = string.split("\n").map(element => element.split(/[, ]+/));
     if(temp.some(element => element.length !== 3)) {
         alert("faulty input");
         return false;
@@ -532,8 +532,17 @@ function checkValidity(string) {
 }
 
 function makeProcesses(string, list) {
-    arr = string.split("\n").map(element => element.split(" "));
+    arr = string.split("\n").map(element => element.split(/[, ]+/));
     arr.map(element => list.push(new Process(element[0], Number(element[1]), Number(element[2]))));
 }
+
+
+function Scheduler() {
+    CPU.work(workload);
+    cpu2.work(workload);
+    cpu3.work(workload);
+}
+
+
 
 
