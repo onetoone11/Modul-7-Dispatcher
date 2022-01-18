@@ -14,6 +14,8 @@ function updateCharts() {
         element.data.datasets[0].data = CPU_data.CPU_3;
         element.update();
     });
+
+    updateText();
 }
 
 
@@ -458,6 +460,7 @@ class Dispatcher {
                 }
                 setInterval(Scheduler, 1000);
                 updateCharts();
+                updateText();
                 // this.CPUs = Scheduler(this.workLoad, this.CPUs);
             }
             this.tasks = [];
@@ -476,7 +479,7 @@ class Dispatcher {
 let dispatcher1 = new Dispatcher();
 
 function Scheduler(work, list) {
-    console.log("blablabla");
+    // console.log("blablabla");
 }
 
 
@@ -501,7 +504,8 @@ submitBtn.addEventListener("click", () => {
             dispatcher1.setWorkload(workload);
             dispatcher1.start();
             processList = [];
-            alert("success!");
+            // alert("success!");
+            updateText();
 
         }
     } else {
@@ -531,3 +535,5 @@ function makeProcesses(string, list) {
     arr = string.split("\n").map(element => element.split(" "));
     arr.map(element => list.push(new Process(element[0], Number(element[1]), Number(element[2]))));
 }
+
+
