@@ -32,13 +32,17 @@ function bottomFunction() {
 let CPU_data = {//info som delas mellan charts som tillhör samma CPU. 
     CPU_1: [],
     CPU_2: [],
-    CPU_3: []
+    CPU_3: [],
+    CPU__1:[],
+    CPU__2:[],
+    CPU__3:[]
 }
 
 let CPU_labels = {
     CPU_1: [],
     CPU_2: [],
-    CPU_3: []
+    CPU_3: [],
+    labels: []
 }
 
 let myChar1 = new Chart(document.getElementById('myChart1'), {
@@ -181,6 +185,49 @@ let myChart33 = new Chart(document.getElementById('myChart33'), {
 });
 
 let chartArray = [[myChar1, myChar11],[myChart2, myChart22],[myChart3, myChart33]];
+
+
+let myChart4 = new Chart(document.getElementById('myChart4'), {
+    type: 'line',
+    data: {
+        labels: CPU_labels.labels,
+        datasets: [{
+            label: 'CPU1',
+            data: CPU_data.CPU__1,
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+            ],
+            borderWidth: 1
+        },
+        {
+            label: 'CPU2',
+            data: CPU_data.CPU__2,
+            borderColor: 'rgb(255, 159, 64)',
+            backgroundColor: [
+                'rgb(255, 159, 64)',
+            ],
+            borderWidth: 1
+        },
+        {
+            label: 'CPU3',
+            data: CPU_data.CPU__3,
+            borderColor: 'rgb(255, 205, 86)',
+            backgroundColor: [
+                'rgb(255, 205, 86)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    },
+});
 
 
 //funktioner för att redigera värdena i Charts

@@ -2,20 +2,38 @@ function updateCharts() {
     chartArray[0].map(element => {
         element.data.labels = CPU_labels.CPU_1;
         element.data.datasets[0].data = CPU_data.CPU_1;
-        element.update();
+        element.update('none');
     });
     chartArray[1].map(element => {
         element.data.labels = CPU_labels.CPU_2;
         element.data.datasets[0].data = CPU_data.CPU_2;
-        element.update();
+        element.update('none');
     });
     chartArray[2].map(element => {
         element.data.labels = CPU_labels.CPU_3;
         element.data.datasets[0].data = CPU_data.CPU_3;
-        element.update();
+        element.update('none');
     });
 
     updateText();
+}
+
+function updateChart(){
+    CPU_labels.labels.push('');
+    CPU_data.CPU__1.push(CPU_data.CPU_1.length);
+    CPU_data.CPU__2.push(CPU_data.CPU_2.length);
+    CPU_data.CPU__3.push(CPU_data.CPU_3.length);
+
+    // myChart4.data.labels = CPU_labels.labels;
+    myChart4.data.datasets[0].data = CPU_data.CPU__1;
+
+    // myChart4.data.labels = CPU_labels.labels;
+    myChart4.data.datasets[1].data = CPU_data.CPU__2;
+
+    myChart4.data.labels = CPU_labels.labels;
+    myChart4.data.datasets[2].data = CPU_data.CPU__3;
+
+    myChart4.update('none');
 }
 
 
@@ -31,9 +49,6 @@ class Process {
 class Node2 {
     constructor(data, next=null) {
         this.data = data;
-        // this.work_name = work_name;
-        // this.work_time = work_time;
-        // this.work_prio = work_prio;
         this.next = next;
     }
 }
@@ -54,47 +69,33 @@ class CPU1 {
     update() {
         CPU_data.CPU_1 = this.array.map(element => element.remainingTime);
         CPU_labels.CPU_1 = this.array.map(element => element.name);
+        
+        // alert(CPU_data.CPU__1);
 
         updateCharts();
     }
 
     add(data) { //enqueue
         this.array.push(data);
+        CPU_data.CPU__1.push(this.array.length);
+        CPU_labels.labels.push('');
         this.update();
     }
 
     remove() { //dequeue(remove head, return head data)
         this.array.shift();
+        
     }
 
     work(ms) {
         let temp = this.array;
-        // var timer = setInterval(function work2() {
-        //     if(temp.length !== 0) {
-        //         if(ms > 0) {
-        //             if(temp[0].remainingTime <= 1) {
-        //                 console.log(`finished with ${temp[0].name}`);
-        //                 temp.shift();
-        //             } else {
-        //                 temp[0].remainingTime -= 1;
-        //             }
-        //         } else {
-        //             clearInterval(timer);
-        //             console.log('Time alotted has run out');
-        //             return;
-        //         }
-        //     } else {
-        //         clearInterval(timer);
-        //         console.log('No tasks left!');
-        //         return;
-        //     }
-        //     ms--;
-        //     // console.log(ms);
-        // }, 10);
         while(ms > 0 && this.array.length > 0) {
             if(temp[0].remainingTime <= 0) {
                 console.log(`finished with ${temp[0].name}`);
                 temp.shift();
+                CPU_data.CPU__1.push(this.array.length);
+                CPU_labels.labels.push('');
+                this.update();
             } else {
                 temp[0].remainingTime -= 1;
             }
@@ -127,10 +128,10 @@ class CPU2 {
             }
             return [[list.data.remainingTime, list.data.name],...add(length-1)(list.next)];
         }
-        CPU_data.CPU_2 = add(this.length)(this.head).map(element => element[0]);
-        CPU_labels.CPU_2 = add(this.length)(this.head).map(element => element[1]);
+        // CPU_data.CPU_2 = add(this.length)(this.head).map(element => element[0]);
+        // CPU_labels.CPU_2 = add(this.length)(this.head).map(element => element[1]);
 
-        updateCharts();
+        // updateCharts();
     }
 
     add(process) {
@@ -178,7 +179,6 @@ class CPU2 {
         // addData(myChart2, 'hello1', 1000);
 
         // length 
-        console.log("knjdjnsd")
         this.update();
     }
 
@@ -187,16 +187,20 @@ class CPU2 {
         function removeZero(list, length){
 
             if(length == 0){
+
+                // CPU_data.CPU__2.push(cpu2.length);
+                // CPU_labels.labels.push('');
+
+                // updateCharts();
                 return;
             }
 
             if(list.data.remainingTime == 0){
-                console.log('dhjkashdkjsasdk');
+
                 return removeZero(list.next, length-1);
                 
             }
             else{
-                console.log('2');
                 tempArray[tempArray.length] = [list.data];
                 return removeZero(list.next, length-1);
             }
@@ -222,8 +226,6 @@ class CPU2 {
         // removeAll(myChart2, 2);
         // removeAll(myChart22, 2);
 
-        console.log(myChart2);
-
         for(let i = 0; i < tempArray.length; i++){
             // addData(myChart2, tempArray[i][0].name, tempArray[i][0].remainingTime);
             editDataAtPos(myChart2, i, tempArray[i][0].remainingTime);
@@ -231,9 +233,6 @@ class CPU2 {
             myChart2.update();
             // myChart22.update();
         }
-
-        console.log('tempArray');
-        console.log(tempArray);
         tempArray = [];
     }
 
@@ -256,8 +255,6 @@ class CPU2 {
         }
 
         numMs(this.head, this.length);
-        console.log(tot);
-        console.log('tot');
 
         function work2(list, ms, tot){
 
@@ -278,8 +275,6 @@ class CPU2 {
             }
         }
         work2(this.head, ms, tot);
-
-        // console.log('remove');
         tot = 0;
         this.remove();
         this.update();
@@ -315,7 +310,6 @@ class CPU3 {
             }
             return [[list.data.remainingTime, list.data.name],...add(length-1)(list.next)];
         }
-        console.log(add(this.length)(this.head).map(element => element[1]))
         CPU_data.CPU_3 = add(this.length)(this.head).map(element => element[0]);
         CPU_labels.CPU_3 = add(this.length)(this.head).map(element => element[1]);
 
@@ -360,7 +354,6 @@ class CPU3 {
             }
         }
 
-        console.log("test");
         this.update();
     }
 
@@ -373,12 +366,10 @@ class CPU3 {
             }
 
             if(list.data.remainingTime < 1){
-                console.log('dhjkashdkjsasdk');
                 return removeZero(list.next, length-1);
                 
             }
             else{
-                console.log('2');
                 tempArray[tempArray.length] = [list.data];
                 return removeZero(list.next, length-1);
             }
@@ -431,7 +422,6 @@ class CPU3 {
                 return pos(list.next, length-1);
             }
         }
-        console.log(temp);
         this.remove();
         this.update();
 

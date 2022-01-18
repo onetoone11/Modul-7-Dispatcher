@@ -47,7 +47,7 @@
         work_list1.innerHTML = '';
     
         for(let i = 0; i < CPU.array.length && i < 5; i++){
-            work_list1.innerHTML += `   <div class="row" style="padding-left: 12px; height: 25px;">
+            work_list1.innerHTML += `   <div class="row work-row" style="padding-left: 12px; height: 25px;">
                                     <div class="col-lg-6 work_name work1_name1">${CPU.array[i].name}</div>
                                     <div class="col-lg-4 work_time work1_time1">${CPU.array[i].remainingTime}</div>
                                     <div class="col-lg-2 work_prio work1_prio1">${CPU.array[i].priority}</div>
@@ -58,7 +58,7 @@
         work_list2.innerHTML = '';
 
         for(let i = 0; i < cpu2.length && i < 5; i++){
-            work_list2.innerHTML += `   <div class="row" style="padding-left: 12px; height: 25px;">
+            work_list2.innerHTML += `   <div class="row work-row2" style="padding-left: 12px; height: 25px;">
                                             <div class="col-lg-6 work_name work2_name1">${cpu2Array[i].name}</div>
                                             <div class="col-lg-4 work_time work2_time1">${cpu2Array[i].remainingTime}</div>
                                             <div class="col-lg-2 work_prio work2_prio1">${cpu2Array[i].priority}</div>
@@ -69,15 +69,13 @@
         work_list3.innerHTML = '';
 
         for(let i = 0; i < cpu3.length && i < 5; i++){
-            work_list3.innerHTML += `   <div class="row" style="padding-left: 12px; height: 25px;">
+            work_list3.innerHTML += `   <div class="row work-row3" style="padding-left: 12px; height: 25px;">
                                             <div class="col-lg-6 work_name work2_name1">${cpu3Array[i].name}</div>
                                             <div class="col-lg-4 work_time work2_time1">${cpu3Array[i].remainingTime}</div>
                                             <div class="col-lg-2 work_prio work2_prio1">${cpu3Array[i].priority}</div>
                                         </div>
                                         <hr class="c-orange">`;
         } 
-        console.log(cpu2Array)
-        console.log("test-----------------------------------------------------------------------------------------------------")
         
 
         // Cpu 1
@@ -131,4 +129,41 @@
             cpu_img3.src = 'media/cpuGreen.png';
         }
 
+    }
+
+    // let work_row = document.querySelector('.work-row');
+    // let work_row2 = document.querySelector('.work-row2');
+    // let work_row3 = document.querySelector('.work-row3');
+
+    // window.addEventListener('click', function(element){
+    //     // alert(element);
+    //     console.log(element.target.className);
+    // });
+
+
+
+    // Upload file
+
+    document.getElementById('input-file').addEventListener('change', getFile)
+
+    function getFile(event) {
+        const input = event.target
+        if ('files' in input && input.files.length > 0) {
+            placeFileContent(document.getElementById('commandInput'),input.files[0])
+        }
+    }
+    
+    function placeFileContent(target, file) {
+        readFileContent(file).then(content => {
+          target.value = content
+      }).catch(error => console.log(error))
+    }
+    
+    function readFileContent(file) {
+        const reader = new FileReader()
+      return new Promise((resolve, reject) => {
+        reader.onload = event => resolve(event.target.result)
+        reader.onerror = error => reject(error)
+        reader.readAsText(file)
+      })
     }
