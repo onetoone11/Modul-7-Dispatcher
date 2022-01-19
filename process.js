@@ -91,6 +91,14 @@ class Node3 {
     }
 }
 
+class NodeBST {
+    constructor(data, left = null, right = null) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+}
+
 class CPU1 {
     constructor() {
         this.array = [];
@@ -441,6 +449,35 @@ class CPU3 {
         this.remove();
         this.update();
 
+    }
+}
+
+class CPU4 {
+    constructor() {
+        this.head = null;
+    }
+
+    add(data) {
+        const insert2 = data => tree => {
+            if(tree === null) {
+                return new Node(data);
+            }
+            if(data > tree.data) {
+                tree.right = insert2(data)(tree.right);
+            } else {
+                tree.left = insert2(data)(tree.left);
+            }
+            return tree;
+        }
+        this.head = insert2(data)(this.head);
+    }
+
+    remove()
+
+    traverse() {
+        const traverse2 = func => tree => {
+            if(tree === null)
+        }
     }
 }
 
