@@ -33,16 +33,17 @@ let CPU_data = {//info som delas mellan charts som tillhör samma CPU.
     CPU_1: [],
     CPU_2: [],
     CPU_3: [],
-    CPU__1:[],
-    CPU__2:[],
-    CPU__3:[]
+    CPU__1:[0],
+    CPU__2:[0],
+    CPU__3:[0],
+    workload_ms: [0]
 }
 
 let CPU_labels = {
     CPU_1: [],
     CPU_2: [],
     CPU_3: [],
-    labels: []
+    labels: ['']
 }
 
 let myChar1 = new Chart(document.getElementById('myChart1'), {
@@ -226,6 +227,24 @@ let myChart4 = new Chart(document.getElementById('myChart4'), {
                 beginAtZero: true
             }
         }
+    },
+});
+
+let myChart5 = new Chart(document.getElementById('myChart5'), {
+    type: 'line',
+    data: {
+        labels: CPU_labels.labels,
+        datasets: [{
+            label: 'Workload',
+            data: CPU_data.workload_ms,
+            backgroundColor: [
+                'rgb(75, 192, 192)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
     },
 });
 
