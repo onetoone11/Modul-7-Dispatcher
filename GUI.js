@@ -92,6 +92,7 @@
             status1.innerHTML = 'Busy';
             status11.innerHTML = 'Busy';
             status1.style.color = '#FC4C01';
+            status11.style.color = '#FC4C01';
 
             cpu_img1.src = 'media/cpu.png';
         }
@@ -100,6 +101,7 @@
             status1.innerHTML = 'Available';
             status11.innerHTML = 'Available';
             status1.style.color = '#8ACF8C';
+            status11.style.color = '#8ACF8C';
 
             cpu_img1.src = 'media/cpuGreen.png';
         }
@@ -111,6 +113,7 @@
             status2.innerHTML = 'Busy';
             status22.innerHTML = 'Busy';
             status2.style.color = '#FC4C01';
+            status22.style.color = '#FC4C01';
 
             cpu_img2.src = 'media/cpu.png';
         }
@@ -119,6 +122,7 @@
             status2.innerHTML = 'Available';
             status22.innerHTML = 'Available';
             status2.style.color = '#8ACF8C';
+            status22.style.color = '#8ACF8C';
 
             cpu_img2.src = 'media/cpuGreen.png';
         }
@@ -130,6 +134,7 @@
             status3.innerHTML = 'Busy';
             status33.innerHTML = 'Busy';
             status3.style.color = '#FC4C01';
+            status33.style.color = '#FC4C01';
 
             cpu_img3.src = 'media/cpu.png';
         }
@@ -138,6 +143,7 @@
             status3.innerHTML = 'Available';
             status33.innerHTML = 'Available';
             status3.style.color = '#8ACF8C';
+            status33.style.color = '#8ACF8C';
 
             cpu_img3.src = 'media/cpuGreen.png';
         }
