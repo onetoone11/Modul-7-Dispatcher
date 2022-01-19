@@ -52,18 +52,18 @@ function updateChart(){
     // CPU_data.CPU__2.push(CPU_data.CPU_2.length);
     // CPU_data.CPU__3.push(CPU_data.CPU_3.length);
 
-    // myChart4.data.labels = CPU_labels.labels;
-    myChart4.data.datasets[0].data = CPU_data.CPU__1;
+    // myChart5.data.labels = CPU_labels.labels;
+    myChart5.data.datasets[0].data = CPU_data.CPU__1;
 
-    // // myChart4.data.labels = CPU_labels.labels;
-    myChart4.data.datasets[1].data = CPU_data.CPU__2;
+    // // myChart5.data.labels = CPU_labels.labels;
+    myChart5.data.datasets[1].data = CPU_data.CPU__2;
 
-    // myChart4.data.labels = CPU_labels.labels;
-    myChart4.data.datasets[2].data = CPU_data.CPU__3;
-    myChart5.data.datasets[0].data = CPU_data.workload_ms;
+    // myChart5.data.labels = CPU_labels.labels;
+    myChart5.data.datasets[2].data = CPU_data.CPU__3;
+    myChart6.data.datasets[0].data = CPU_data.workload_ms;
 
-    myChart4.update('none');
     myChart5.update('none');
+    myChart6.update('none');
 }
 
 

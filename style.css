@@ -85,7 +85,7 @@ button:hover{
     transition: ease-in 0.2s;
 }
 
-.work-row:hover, .work-row2:hover, .work-row3:hover{
+.work-row:hover, .work-row2:hover, .work-row3:hover, .work-row4:hover{
     background-color: orange;
     cursor: pointer;
 }
@@ -131,6 +131,20 @@ button:hover{
 }
 
 .tooltip3:hover .tooltipText3{
+    visibility: visible;
+}
+
+.tooltipText4{
+    position: absolute;
+    left: 10%;
+    top: -200%;
+    visibility: hidden;
+    background-color: rgba(44, 44, 44, 0.8);
+    color: #fff;
+    padding: 20px;
+}
+
+.tooltip4:hover .tooltipText4{
     visibility: visible;
 }
 
