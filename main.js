@@ -33,9 +33,11 @@ let CPU_data = {//info som delas mellan charts som tillhör samma CPU.
     CPU_1: [],
     CPU_2: [],
     CPU_3: [],
+    CPU_4: [],
     CPU__1:[0],
     CPU__2:[0],
     CPU__3:[0],
+    CPU__4:[0],
     workload_ms: [0]
 }
 
@@ -43,6 +45,7 @@ let CPU_labels = {
     CPU_1: [],
     CPU_2: [],
     CPU_3: [],
+    CPU_4: [],
     labels: ['']
 }
 
@@ -99,6 +102,29 @@ let myChart3 = new Chart(document.getElementById('myChart3'), {
         datasets: [{
             label: 'Remaining time',
             data: CPU_data.CPU_3,
+            backgroundColor: [
+                'rgb(247, 141, 11)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    },
+});
+
+let myChart4 = new Chart(document.getElementById('myChart4'), {
+    type: 'bar',
+    data: {
+        labels: CPU_labels.CPU_4,
+        datasets: [{
+            label: 'Remaining time',
+            data: CPU_data.CPU_4,
             backgroundColor: [
                 'rgb(247, 141, 11)'
             ],
@@ -185,10 +211,32 @@ let myChart33 = new Chart(document.getElementById('myChart33'), {
     },
 });
 
-let chartArray = [[myChar1, myChar11],[myChart2, myChart22],[myChart3, myChart33]];
+let myChart44 = new Chart(document.getElementById('myChart44'), {
+    type: 'pie',
+    data: {
+        labels: CPU_labels.CPU_4,
+        datasets: [{
+            label: 'Remaining time',
+            data: CPU_data.CPU_4,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+    },
+});
+
+let chartArray = [[myChar1, myChar11],[myChart2, myChart22],[myChart3, myChart33],[myChart4, myChart44]];
 
 
-let myChart4 = new Chart(document.getElementById('myChart4'), {
+let myChart5 = new Chart(document.getElementById('myChart5'), {
     type: 'line',
     data: {
         labels: CPU_labels.labels,
@@ -217,7 +265,16 @@ let myChart4 = new Chart(document.getElementById('myChart4'), {
             backgroundColor: [
                 'rgb(255, 205, 86)',
             ],
-            borderWidth: 1
+            borderWidth: 1 
+        },
+        {
+            label: 'CPU3',
+            data: CPU_data.CPU__3,
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: [
+                'rgb(75, 192, 192)',
+            ],
+            borderWidth: 1 
         }]
     },
     options: {
@@ -230,16 +287,16 @@ let myChart4 = new Chart(document.getElementById('myChart4'), {
     },
 });
 
-let myChart5 = new Chart(document.getElementById('myChart5'), {
+let myChart6 = new Chart(document.getElementById('myChart6'), {
     type: 'line',
     data: {
         labels: CPU_labels.labels,
         datasets: [{
             label: 'Workload',
             data: CPU_data.workload_ms,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(54, 162, 235)',
             backgroundColor: [
-                'rgb(75, 192, 192)'
+                'rgb(54, 162, 235)'
             ],
             borderWidth: 1
         }]
