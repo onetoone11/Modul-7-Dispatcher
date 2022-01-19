@@ -90,6 +90,50 @@ button:hover{
     cursor: pointer;
 }
 
+/* Tooltip */
+
+.tooltipText1{
+    position: absolute;
+    left: 10%;
+    top: -200%;
+    visibility: hidden;
+    background-color: rgba(44, 44, 44, 0.8);
+    color: #fff;
+    padding: 20px;
+}
+
+.tooltip1:hover .tooltipText1{
+    visibility: visible;
+}
+
+.tooltipText2{
+    position: absolute;
+    left: 10%;
+    top: -200%;
+    visibility: hidden;
+    background-color: rgba(44, 44, 44, 0.8);
+    color: #fff;
+    padding: 20px;
+}
+
+.tooltip2:hover .tooltipText2{
+    visibility: visible;
+}
+
+.tooltipText3{
+    position: absolute;
+    left: 10%;
+    top: -200%;
+    visibility: hidden;
+    background-color: rgba(44, 44, 44, 0.8);
+    color: #fff;
+    padding: 20px;
+}
+
+.tooltip3:hover .tooltipText3{
+    visibility: visible;
+}
+
 
 /* Cpu */
 

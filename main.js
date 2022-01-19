@@ -237,6 +237,7 @@ let myChart5 = new Chart(document.getElementById('myChart5'), {
         datasets: [{
             label: 'Workload',
             data: CPU_data.workload_ms,
+            borderColor: 'rgb(75, 192, 192)',
             backgroundColor: [
                 'rgb(75, 192, 192)'
             ],

@@ -16,6 +16,13 @@
     let cpu_img3 = document.querySelector('.cpu_img3');
     let status3 = document.querySelector('.status3');
 
+    let status11 = document.querySelector('.status11');
+    let status22 = document.querySelector('.status22');
+    let status33 = document.querySelector('.status33');
+    let type11 = document.querySelector('.type11');
+    let type22 = document.querySelector('.type22');
+    let type33 = document.querySelector('.type33');
+
     function updateText(){
 
         let cpu2Array = [];
@@ -83,6 +90,7 @@
         if(CPU.array.length > 0){
             status1.innerHTML = '';
             status1.innerHTML = 'Busy';
+            status11.innerHTML = 'Busy';
             status1.style.color = '#FC4C01';
 
             cpu_img1.src = 'media/cpu.png';
@@ -90,6 +98,7 @@
         else{
             status1.innerHTML = '';
             status1.innerHTML = 'Available';
+            status11.innerHTML = 'Available';
             status1.style.color = '#8ACF8C';
 
             cpu_img1.src = 'media/cpuGreen.png';
@@ -100,6 +109,7 @@
         if(cpu2.length > 0){
             status2.innerHTML = '';
             status2.innerHTML = 'Busy';
+            status22.innerHTML = 'Busy';
             status2.style.color = '#FC4C01';
 
             cpu_img2.src = 'media/cpu.png';
@@ -107,6 +117,7 @@
         else{
             status2.innerHTML = '';
             status2.innerHTML = 'Available';
+            status22.innerHTML = 'Available';
             status2.style.color = '#8ACF8C';
 
             cpu_img2.src = 'media/cpuGreen.png';
@@ -117,6 +128,7 @@
         if(cpu3.length > 0){
             status3.innerHTML = '';
             status3.innerHTML = 'Busy';
+            status33.innerHTML = 'Busy';
             status3.style.color = '#FC4C01';
 
             cpu_img3.src = 'media/cpu.png';
@@ -124,6 +136,7 @@
         else{
             status3.innerHTML = '';
             status3.innerHTML = 'Available';
+            status33.innerHTML = 'Available';
             status3.style.color = '#8ACF8C';
 
             cpu_img3.src = 'media/cpuGreen.png';

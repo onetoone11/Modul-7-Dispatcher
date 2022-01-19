@@ -28,6 +28,9 @@ function updateCharts() {
             console.log(3);
             updateChart();
         }
+        else if(CPU_data.workload_ms[CPU_data.workload_ms.length - 1] !== workload){
+            updateChart();
+        }
     // }
     // else{
     //     updateChart();
@@ -42,6 +45,7 @@ function updateChart(){
     CPU_data.CPU__1.push(CPU_data.CPU_1.length);
     CPU_data.CPU__2.push(CPU_data.CPU_2.length);
     CPU_data.CPU__3.push(CPU_data.CPU_3.length);
+    CPU_data.workload_ms.push(workload);
 
     // CPU_labels.labels.push('');
     // CPU_data.CPU__1.push(CPU_data.CPU_1.length);
@@ -56,8 +60,10 @@ function updateChart(){
 
     // myChart4.data.labels = CPU_labels.labels;
     myChart4.data.datasets[2].data = CPU_data.CPU__3;
+    myChart5.data.datasets[0].data = CPU_data.workload_ms;
 
     myChart4.update('none');
+    myChart5.update('none');
 }
 
 
@@ -546,6 +552,9 @@ function Scheduler() {
     cpu3.work(workload);
 
     updateCharts();
+
+    let speed = document.querySelector('.speed');
+    speed.innerHTML = `${workload}`;
 
     // console.log(CPU.length);
     // console.log(cpu2.length);
