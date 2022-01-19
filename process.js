@@ -472,13 +472,13 @@ class CPU4 {
         this.head = insert2(data)(this.head);
     }
 
-    remove()
+    // remove()
 
-    traverse() {
-        const traverse2 = func => tree => {
-            if(tree === null)
-        }
-    }
+    // traverse() {
+    //     const traverse2 = func => tree => {
+    //         if(tree === null)
+    //     }
+    // }
 }
 
 let cpu3 = new CPU3();

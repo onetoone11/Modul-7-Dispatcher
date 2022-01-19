@@ -47,14 +47,6 @@ class BST {
     }
 
     length() {
-        // const length2 = tree => {
-        //     if(tree === null) {
-        //         return 0;
-        //     } else {
-        //         return 1 + length2(tree.right) + length2(tree.left);
-        //     }
-        // }
-        // return length2(this.head);
         const length2 = tree => tree === null ? 0 : 1 + length2(tree.right) + length2(tree.left);
         return length2(this.head);
     }
