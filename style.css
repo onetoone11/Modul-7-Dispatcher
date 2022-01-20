@@ -9,7 +9,7 @@ body{
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 100vw;
-    height: 380vh;
+    height: 420vh;
     opacity: 0.1;
     position: absolute;
     z-index: -1;
@@ -159,7 +159,7 @@ button:hover{
 
 .work-list{
     background-color: rgba(44, 44, 44, 0.8);
-    width: 300px;
+    width: 250px;
     color: #fff;
     margin: auto;
 }
@@ -170,7 +170,7 @@ button:hover{
 }
 
 hr{
-    width: 280px;
+    width: 230px;
     padding-top: 2px;
     margin-left: 12px;
     border: none;
@@ -179,7 +179,7 @@ hr{
 /* Chart */
 
 .chartBox{
-    width: 300px;
+    width: 250px;
     height: 300px;
     background-color: rgba(44, 44, 44, 0.8);
     opacity: 0.8;

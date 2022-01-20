@@ -14,18 +14,27 @@ function updateCharts() {
         element.data.datasets[0].data = CPU_data.CPU_3;
         element.update('none');
     });
+    chartArray[3].map(element => {
+        element.data.labels = CPU_labels.CPU_4;
+        element.data.datasets[0].data = CPU_data.CPU_4;
+        element.update('none');
+    });
 
     // if(CPU_data.CPU__1.length > 0){
         if(CPU_data.CPU__1[CPU_data.CPU__1.length - 1] !== CPU_data.CPU_1.length){
-            console.log(1);
+            // console.log(1);
             updateChart();
         }
         else if(CPU_data.CPU__2[CPU_data.CPU__2.length - 1] !== CPU_data.CPU_2.length){
-            console.log(2);
+            // console.log(2);
             updateChart();
         }
         else if(CPU_data.CPU__3[CPU_data.CPU__3.length - 1] !== CPU_data.CPU_3.length){
-            console.log(3);
+            // console.log(3);
+            updateChart();
+        }
+        else if(CPU_data.CPU__4[CPU_data.CPU__4.length - 1] !== CPU_data.CPU_4.length){
+            // console.log(3);
             updateChart();
         }
         else if(CPU_data.workload_ms[CPU_data.workload_ms.length - 1] !== workload){
@@ -45,6 +54,7 @@ function updateChart(){
     CPU_data.CPU__1.push(CPU_data.CPU_1.length);
     CPU_data.CPU__2.push(CPU_data.CPU_2.length);
     CPU_data.CPU__3.push(CPU_data.CPU_3.length);
+    CPU_data.CPU__4.push(CPU_data.CPU_4.length);
     CPU_data.workload_ms.push(workload);
 
     // CPU_labels.labels.push('');
@@ -307,10 +317,10 @@ class CPU2 {
 
 let cpu2 = new CPU2();
 let ab = new Process('hello1', 1000, 5);
-let bc = new Process('hello2', 2000, 5);
-let cd = new Process('hello3', 3000, 5);
-let de = new Process('hello4', 4000, 5);
-let ef = new Process('hello4', 5000, 5);
+let bc = new Process('hello2', 2000, 4);
+let cd = new Process('hello3', 3000, 3);
+let de = new Process('hello4', 4000, 2);
+let ef = new Process('hello4', 5000, 1);
 // cpu2.add(ab);
 // cpu2.add(bc);
 // cpu2.add(cd);
@@ -455,21 +465,101 @@ class CPU3 {
 class CPU4 {
     constructor() {
         this.head = null;
+        this.length = 0;
+    }
+
+    update(){
+
+        const add = list => {
+            if( list == null) {
+                return [];
+            }
+            return [[list.data.remainingTime, list.data.name],...add(list.right),...add(list.left)];
+        }
+        CPU_data.CPU_4 = add(this.head).map(element => element[0]);
+        CPU_labels.CPU_4 = add(this.head).map(element => element[1]);
+
     }
 
     add(data) {
         const insert2 = data => tree => {
             if(tree === null) {
-                return new Node(data);
+                return new NodeBST(data);
             }
-            if(data > tree.data) {
+            if(data.priority > tree.data.priority) {
                 tree.right = insert2(data)(tree.right);
             } else {
                 tree.left = insert2(data)(tree.left);
             }
             return tree;
         }
+        this.length++;
         this.head = insert2(data)(this.head);
+
+        // console.log(this.length);
+        this.update();
+    }
+
+    remove(){
+
+        let tempArr = [];
+
+        function removeZero(tree){
+
+            if(tree == null){
+                return;
+            }
+            else if(tree.data.remainingTime < 1){
+                return;
+            }
+            tempArr.push(tree.data);
+            return removeZero(tree.right) + removeZero(tree.left);
+        }
+
+        removeZero(this.head);
+
+        if(tempArr == []){
+            return;
+        }
+        else{
+            this.head = null;
+            this.length = 0;
+            for(let i = 0; i < tempArr.length; i++){
+                this.add(tempArr[i]);
+                // this.add(...tempArr[i]);
+            }
+
+        }
+        tempArr = [];
+    }
+
+    work(ms){
+        let sum = 0;
+
+        function sumPriority(tree){
+            if(tree == null){
+                return;
+            }
+            sum = sum + tree.data.priority;
+            // console.log(tree.data.priority);
+            return sumPriority(tree.right) + sumPriority(tree.left) + tree.data.priority;
+        }
+        sumPriority(this.head);
+
+        console.log(sum);
+
+        function everyNode(tree){
+            if(tree == null){
+                return 0;
+            }
+            // Math.round(list.data.priority*ms/temp)
+            tree.data.remainingTime -= Math.round(tree.data.priority*ms/sum);
+            return 1 + everyNode(tree.right) + everyNode(tree.left);
+        }
+        everyNode(this.head);
+
+        this.remove();
+        this.update();
     }
 
     // remove()
@@ -480,6 +570,8 @@ class CPU4 {
     //     }
     // }
 }
+
+let cpu4 = new CPU4();
 
 let cpu3 = new CPU3();
 // cpu3.add(ab);
@@ -492,13 +584,13 @@ class Dispatcher {
     constructor(tasks = [], workLoad = null) {
         this.workLoad = workLoad;
         this.tasks = tasks;
-        this.CPUs = [CPU, cpu2, cpu3];
+        this.CPUs = [CPU, cpu2, cpu3, cpu4];
     }
 
     start() {
         // updateChart();
-        if(this.CPUs.length === 3) {
-            for(let i = 0; i < 3; i++) {
+        if(this.CPUs.length === 4) {
+            for(let i = 0; i < 4; i++) {
                 for(let j = 0; j < this.tasks.length; j++) {
                     this.CPUs[i].add(Object.assign(Object.create(Object.getPrototypeOf(this.tasks[j])), this.tasks[j]));
                 }
@@ -587,15 +679,12 @@ function Scheduler() {
     CPU.work(workload);
     cpu2.work(workload);
     cpu3.work(workload);
+    cpu4.work(workload);
 
     updateCharts();
 
     let speed = document.querySelector('.speed');
     speed.innerHTML = `${workload}`;
-
-    // console.log(CPU.length);
-    // console.log(cpu2.length);
-    // console.log(cpu3.length);
 }
 
 

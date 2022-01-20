@@ -268,7 +268,7 @@ let myChart5 = new Chart(document.getElementById('myChart5'), {
             borderWidth: 1 
         },
         {
-            label: 'CPU3',
+            label: 'CPU4',
             data: CPU_data.CPU__3,
             borderColor: 'rgb(75, 192, 192)',
             backgroundColor: [

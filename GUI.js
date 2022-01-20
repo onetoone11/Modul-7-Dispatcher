@@ -6,6 +6,7 @@
     let work_list1 = document.querySelector('.work-list1');
     let work_list2 = document.querySelector('.work-list2');
     let work_list3 = document.querySelector('.work-list3');
+    let work_list4 = document.querySelector('.work-list4');
 
     let cpu_img1 = document.querySelector('.cpu_img1');
     let status1 = document.querySelector('.status1');
@@ -15,13 +16,18 @@
 
     let cpu_img3 = document.querySelector('.cpu_img3');
     let status3 = document.querySelector('.status3');
+    
+    let cpu_img4 = document.querySelector('.cpu_img4');
+    let status4 = document.querySelector('.status4');
 
     let status11 = document.querySelector('.status11');
     let status22 = document.querySelector('.status22');
     let status33 = document.querySelector('.status33');
+    let status44 = document.querySelector('.status44');
     let type11 = document.querySelector('.type11');
     let type22 = document.querySelector('.type22');
     let type33 = document.querySelector('.type33');
+    let type44 = document.querySelector('.type44');
 
     function updateText(){
 
@@ -48,6 +54,19 @@
             else{
                 cpu3Array.push(list.data);
                 return cpu3ToArray(list.next, length-1);
+            }
+        }
+
+        let cpu4Array = [];
+        cpu4ToArray(cpu4.head);
+
+        function cpu4ToArray(list){
+            if(list == null){
+                return;
+            }
+            else{
+                cpu4Array.push(list.data);
+                return cpu4ToArray(list.right) + cpu4ToArray(list.left);
             }
         }
 
@@ -80,6 +99,17 @@
                                             <div class="col-lg-6 work_name work2_name1">${cpu3Array[i].name}</div>
                                             <div class="col-lg-4 work_time work2_time1">${cpu3Array[i].remainingTime}</div>
                                             <div class="col-lg-2 work_prio work2_prio1">${cpu3Array[i].priority}</div>
+                                        </div>
+                                        <hr class="c-orange">`;
+        } 
+
+        work_list4.innerHTML = '';
+
+        for(let i = 0; i < cpu4.length && i < 5; i++){
+            work_list4.innerHTML += `   <div class="row work-row3" style="padding-left: 12px; height: 25px;">
+                                            <div class="col-lg-6 work_name work2_name1">${cpu4Array[i].name}</div>
+                                            <div class="col-lg-4 work_time work2_time1">${cpu4Array[i].remainingTime}</div>
+                                            <div class="col-lg-2 work_prio work2_prio1">${cpu4Array[i].priority}</div>
                                         </div>
                                         <hr class="c-orange">`;
         } 
@@ -146,6 +176,27 @@
             status33.style.color = '#8ACF8C';
 
             cpu_img3.src = 'media/cpuGreen.png';
+        }
+
+        // Cpu 4
+
+        if(cpu4.length > 0){
+            status4.innerHTML = '';
+            status4.innerHTML = 'Busy';
+            status44.innerHTML = 'Busy';
+            status4.style.color = '#FC4C01';
+            status44.style.color = '#FC4C01';
+
+            cpu_img4.src = 'media/cpu.png';
+        }
+        else{
+            status4.innerHTML = '';
+            status4.innerHTML = 'Available';
+            status44.innerHTML = 'Available';
+            status4.style.color = '#8ACF8C';
+            status44.style.color = '#8ACF8C';
+
+            cpu_img4.src = 'media/cpuGreen.png';
         }
 
     }
