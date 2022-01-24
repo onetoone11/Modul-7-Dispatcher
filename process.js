@@ -418,6 +418,7 @@ class CPU3 {
             this.head = null;
             this.length = 0;
             for(let i = 0; i < tempArray.length; i++){
+                console.log(tempArray[i]);
                 this.add(...tempArray[i]);
             }
 
@@ -501,10 +502,15 @@ class CPU4 {
     }
 
     remove(){
+        console.log('remove metod start');
 
         let tempArr = [];
+        console.log('tempArr är tom:');
+        console.log(tempArr);
 
         function removeZero(tree){
+
+            console.log('function removeZero körs');
 
             if(tree == null){
                 return;
@@ -512,12 +518,18 @@ class CPU4 {
             else if(tree.data.remainingTime < 1){
                 return;
             }
+            console.log('sparar tree.data');
             tempArr.push(tree.data);
+            console.log('nu ser tempArr ut såhär:');
+            console.log(tempArr);
             return removeZero(tree.right) + removeZero(tree.left);
         }
-
+        console.log('1, removeZero ska köras');
         removeZero(this.head);
+        
 
+
+        console.log('2, nu ska tempArr hanteras');
         if(tempArr == []){
             return;
         }
@@ -526,11 +538,12 @@ class CPU4 {
             this.length = 0;
             for(let i = 0; i < tempArr.length; i++){
                 this.add(tempArr[i]);
-                // this.add(...tempArr[i]);
             }
 
         }
+        console.log('Nu ska tempArr tömmas:');
         tempArr = [];
+        console.log(tempArr);
     }
 
     work(ms){
@@ -643,7 +656,7 @@ submitBtn.addEventListener("click", () => {
                 processList = [];
                 // alert("success!");
                 updateText();
-                setInterval(Scheduler, 100);
+                setInterval(Scheduler, 1000);
     
             }
         }
@@ -676,10 +689,10 @@ function makeProcesses(string, list) {
 
 function Scheduler() {
 
-    CPU.work(workload);
-    cpu2.work(workload);
-    cpu3.work(workload);
-    cpu4.work(workload);
+    // CPU.work(workload);
+    // cpu2.work(workload);
+    // cpu3.work(workload);
+    // cpu4.work(workload);
 
     updateCharts();
 
